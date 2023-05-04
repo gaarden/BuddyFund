@@ -9,13 +9,11 @@ import SwiftUI
 
 struct Home: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack{
+            FundingProduct()
+            FundingProduct()
+            FundingProduct()
         }
-        .padding()
     }
 }
 

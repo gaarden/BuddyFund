@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5350F1D72A037627003C1E1C /* FundingProduct.swift */; };
 		F598B1572A034BAC005D20F7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598B1562A034BAC005D20F7 /* Home.swift */; };
 		F598B1592A034BAD005D20F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F598B1582A034BAD005D20F7 /* Assets.xcassets */; };
 		F598B15C2A034BAD005D20F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F598B15B2A034BAD005D20F7 /* Preview Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5350F1D72A037627003C1E1C /* FundingProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingProduct.swift; sourceTree = "<group>"; };
 		F598B1512A034BAC005D20F7 /* BuddyFund.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyFund.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F598B1562A034BAC005D20F7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		F598B1582A034BAD005D20F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				F598B1562A034BAC005D20F7 /* Home.swift */,
+				5350F1D72A037627003C1E1C /* FundingProduct.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				F598B1652A034C55005D20F7 /* AppDelegate.swift in Sources */,
 				F598B1572A034BAC005D20F7 /* Home.swift in Sources */,
 				F598B1672A034C61005D20F7 /* SceneDelegate.swift in Sources */,
+				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,3 +5,14 @@
   Created by Jeongwon Moon on 2023/05/04.
   
 */
+[
+    {
+        "name" : "펀딩제목",
+        "username" : "정다혜",
+        "nameImageName" : "profile",
+        "itemImageName" : "slamdunk",
+        "bday" : "1203",
+        "description" : "펀딩설명",
+        "isFavorite" : false
+    }
+]
