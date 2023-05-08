@@ -10,9 +10,8 @@ import SwiftUI
 struct Home: View {
     var body: some View {
         VStack{
-            FundingProduct()
-            FundingProduct()
-            FundingProduct()
+            FundingProduct(product: productSamples[0])
+            FundingProduct(product: productSamples[1])
         }
     }
 }

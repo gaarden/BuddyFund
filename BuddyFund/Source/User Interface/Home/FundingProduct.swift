@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FundingProduct: View {
+    let product: Product
+    
     var body: some View {
         VStack{
             HStack{
@@ -38,24 +40,24 @@ private extension FundingProduct {
   
   var profile: some View {
       VStack{
-          Image("profile")
+          Image(product.profileImage)
               .resizable()
               .scaledToFill()
               .frame(width: 80,height:80)
               .clipShape(Circle())
-          Text("정다혜")
-          Text("D-5")
+          Text(product.username)
+          Text("D-5") // product.~~ 형태로 수정 필요
               .font(.title2)
       }
   }
   
   var productDescription: some View {
       VStack(alignment: .leading){
-          Text("펀딩제목")
+          Text(product.title)
               .font(.title)
               .fontWeight(.bold)
           Spacer()
-          Text("펀딩설명펀딩설명펀딩설명펀딩설명")
+          Text(product.description)
               .font(.footnote)
               .foregroundColor(.secondary)
           Spacer()
@@ -63,7 +65,7 @@ private extension FundingProduct {
   }
   
     var productImage: some View {
-        Image("slamdunk")
+        Image(product.itemImage)
             .resizable()
             .scaledToFill()
             .frame(width: 100)
@@ -88,6 +90,6 @@ private extension FundingProduct {
 
 struct FundingProduct_Previews: PreviewProvider {
     static var previews: some View {
-        FundingProduct()
+        FundingProduct(product: productSamples[0])
     }
 }
