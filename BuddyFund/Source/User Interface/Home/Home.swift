@@ -8,16 +8,34 @@
 import SwiftUI
 
 struct Home: View {
+    let present : Present
+    
     var body: some View {
-        VStack{
-            FundingProduct(product: productSamples[0])
-            FundingProduct(product: productSamples[1])
-        }
+        NavigationView {
+              List(present.products){ product in
+                ZStack {
+                  NavigationLink(
+                    destination: {
+                        Text("상세정보")
+                    },
+                    label: {
+                      EmptyView()
+                    }
+                  )
+                  .opacity(0)
+                  
+                  HStack {
+                      FundingProduct(product: product)
+                  }
+                }
+              }
+              .navigationTitle("진행중인 펀딩")
+            }
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(present: Present())
     }
 }
