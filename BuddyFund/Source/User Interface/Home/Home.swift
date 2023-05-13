@@ -16,7 +16,7 @@ struct Home: View {
                 ZStack {
                   NavigationLink(
                     destination: {
-                        Text("상세정보")
+                        ProductDetailView(product: product)
                     },
                     label: {
                       EmptyView()
