@@ -9,31 +9,28 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let product : Product
-    
     var body: some View {
-        VStack(spacing : 0){
-            productImage
             descriptView
+            .listStyle(.plain)
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea([.top,.bottom])
-    }
 }
 private extension ProductDetailView{
     var productImage : some View{
         Image(self.product.itemImage)
             .resizable()
-            .scaledToFit()
+            .scaledToFill()
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
         List{
+            productImage
             self.productDescription
-            reviewBox
-            reviewBox
-        }.listStyle(.plain)
-//        .edgesIgnoringSafeArea([.bottom])
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.2),radius: 10, x:0, y:-5)
+            VStack{
+                reviewBox(review: reviewSamples[0])
+                reviewBox(review: reviewSamples[1])//리스트화 해야할 듯.
+            }
+        }
     }
     func days(from dateStr: String) -> String {
         let calendar = Calendar.current
@@ -122,30 +119,6 @@ private extension ProductDetailView{
         let lhsString = text[..<afterSpaceIdx].trimmingCharacters(in: .whitespaces)
         let rhsString = text[afterSpaceIdx...].trimmingCharacters(in: .whitespaces)
         return String(lhsString + "\n" + rhsString)
-    }
-    
-    var reviewBox: some View {
-        VStack {
-            HStack {
-                Text("홍길순")
-                    .font(.title3)
-                Spacer()
-                Text("\(getDate())")
-            }
-            HStack {
-                Text("생일축하해🤩")
-                Spacer()
-            }
-        }
-    }
-    
-    func getDate() -> String {
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = formatter.string(from: now)
-        
-        return dateString
     }
 }
 struct ProductDetailView_Previews: PreviewProvider {
