@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		53471F552A0F5D4400E2E365 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53471F542A0F5D4400E2E365 /* ProductDetailView.swift */; };
+		53471F572A11075B00E2E365 /* reviewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53471F562A11075B00E2E365 /* reviewBox.swift */; };
+		53471F592A1139D200E2E365 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53471F582A1139D200E2E365 /* Review.swift */; };
 		5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5350F1D72A037627003C1E1C /* FundingProduct.swift */; };
 		F598B1572A034BAC005D20F7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598B1562A034BAC005D20F7 /* Home.swift */; };
 		F598B1592A034BAD005D20F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F598B1582A034BAD005D20F7 /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		53471F542A0F5D4400E2E365 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		53471F562A11075B00E2E365 /* reviewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewBox.swift; sourceTree = "<group>"; };
+		53471F582A1139D200E2E365 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		5350F1D72A037627003C1E1C /* FundingProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingProduct.swift; sourceTree = "<group>"; };
 		F598B1512A034BAC005D20F7 /* BuddyFund.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyFund.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F598B1562A034BAC005D20F7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 				5350F1D72A037627003C1E1C /* FundingProduct.swift */,
 				F5CD23C42A0672F4008A2171 /* ProgressBar.swift */,
 				53471F542A0F5D4400E2E365 /* ProductDetailView.swift */,
+				53471F562A11075B00E2E365 /* reviewBox.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			children = (
 				F5B37DC62A08869800ABDC74 /* Product.swift */,
 				F5B37DC82A0889D700ABDC74 /* Present.swift */,
+				53471F582A1139D200E2E365 /* Review.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,7 +242,9 @@
 				F5CD23C52A0672F4008A2171 /* ProgressBar.swift in Sources */,
 				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 				F5B37DC92A0889D700ABDC74 /* Present.swift in Sources */,
+				53471F592A1139D200E2E365 /* Review.swift in Sources */,
 				F5B37DC72A08869800ABDC74 /* Product.swift in Sources */,
+				53471F572A11075B00E2E365 /* reviewBox.swift in Sources */,
 				F5B37DCB2A088BDD00ABDC74 /* BundleExtension.swift in Sources */,
 				53471F552A0F5D4400E2E365 /* ProductDetailView.swift in Sources */,
 			);

@@ -28,10 +28,9 @@ private extension ProductDetailView{
     var descriptView : some View {
         List{
             self.productDescription
-            reviewBox
-            reviewBox
+            reviewBox(review: reviewSamples[0])
+            reviewBox(review: reviewSamples[1])//리스트화 해야할 듯.
         }.listStyle(.plain)
-//        .edgesIgnoringSafeArea([.bottom])
             .cornerRadius(16)
             .shadow(color: Color.black.opacity(0.2),radius: 10, x:0, y:-5)
     }
@@ -122,30 +121,6 @@ private extension ProductDetailView{
         let lhsString = text[..<afterSpaceIdx].trimmingCharacters(in: .whitespaces)
         let rhsString = text[afterSpaceIdx...].trimmingCharacters(in: .whitespaces)
         return String(lhsString + "\n" + rhsString)
-    }
-    
-    var reviewBox: some View {
-        VStack {
-            HStack {
-                Text("홍길순")
-                    .font(.title3)
-                Spacer()
-                Text("\(getDate())")
-            }
-            HStack {
-                Text("생일축하해🤩")
-                Spacer()
-            }
-        }
-    }
-    
-    func getDate() -> String {
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = formatter.string(from: now)
-        
-        return dateString
     }
 }
 struct ProductDetailView_Previews: PreviewProvider {
