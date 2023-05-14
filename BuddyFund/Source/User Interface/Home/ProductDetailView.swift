@@ -9,30 +9,28 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let product : Product
-    
     var body: some View {
-        VStack(spacing : 0){
-            productImage
             descriptView
+            .listStyle(.plain)
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea([.top,.bottom])
-    }
 }
 private extension ProductDetailView{
     var productImage : some View{
         Image(self.product.itemImage)
             .resizable()
-            .scaledToFit()
+            .scaledToFill()
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
         List{
+            productImage
             self.productDescription
-            reviewBox(review: reviewSamples[0])
-            reviewBox(review: reviewSamples[1])//리스트화 해야할 듯.
-        }.listStyle(.plain)
-            .cornerRadius(16)
-            .shadow(color: Color.black.opacity(0.2),radius: 10, x:0, y:-5)
+            VStack{
+                reviewBox(review: reviewSamples[0])
+                reviewBox(review: reviewSamples[1])//리스트화 해야할 듯.
+            }
+        }
     }
     func days(from dateStr: String) -> String {
         let calendar = Calendar.current
