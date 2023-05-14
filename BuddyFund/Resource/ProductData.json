@@ -1,10 +1,3 @@
-/* 
-  ProductData.json
-  BuddyFund
-
-  Created by Jeongwon Moon on 2023/05/04.
-  
-*/
 [
     {
         "title" : "다혜펀딩제목",
@@ -13,8 +6,9 @@
         "itemImage" : "slamdunk",
         "bday" : "1203",
         "description" : "펀딩설명나는다혜",
-        "price": 200
-        "isFavorite" : false
+        "price": 200,
+        "isFavorite" : false,
+        "account": "카카오 3333-00-0000-000"
     },
     {
         "title" : "정원펀딩제목",
@@ -23,8 +17,19 @@
         "itemImage" : "applewatch",
         "bday" : "1111",
         "description" : "펀딩설명나는정원",
-        "price": 300
-        "isFavorite" : false
+        "price": 300,
+        "isFavorite" : false,
+        "account": "카카오 3333-00-0000-000"
     },
-    
+    {
+        "title" : "백호펀딩제목",
+        "username" : "강백호",
+        "profileImage" : "user3",
+        "itemImage" : "basketballhoop",
+        "bday" : "0401",
+        "description" : "펀딩설명나는백호",
+        "price": 1680,
+        "isFavorite" : false,
+        "account": "카카오 3333-00-0000-000"
+    },
 ]

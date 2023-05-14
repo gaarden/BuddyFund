@@ -37,7 +37,7 @@ struct FundingProduct: View {
 
 private extension FundingProduct {
   // MARK: View
-  
+    
   var profile: some View {
       VStack{
           Image(product.profileImage)
@@ -54,7 +54,7 @@ private extension FundingProduct {
   var productDescription: some View {
       VStack(alignment: .leading){
           Text(product.title)
-              .font(.title)
+              .font(.title2)
               .fontWeight(.bold)
           Spacer()
           Text(product.description)
