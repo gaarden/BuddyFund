@@ -17,6 +17,7 @@ struct Review {
 
 extension Review: Decodable {}
 extension Review: Identifiable {}
+extension Review: Hashable {}
 
 
 let reviewSamples = [

@@ -26,9 +26,10 @@ private extension ProductDetailView{
         List{
             productImage
             self.productDescription
-            VStack{
-                reviewBox(review: reviewSamples[0])
-                reviewBox(review: reviewSamples[1])//리스트화 해야할 듯.
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(reviewSamples, id: \.self) { review in
+                    reviewBox(review: review)
+                }
             }
         }
     }
