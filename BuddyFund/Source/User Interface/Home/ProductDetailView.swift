@@ -23,12 +23,15 @@ private extension ProductDetailView{
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
-        List{
-            productImage
-            self.productDescription
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(reviewSamples, id: \.self) { review in
-                    reviewBox(review: review)
+        NavigationView{
+            
+            List{
+                productImage
+                self.productDescription
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(reviewSamples, id: \.self) { review in
+                        reviewBox(review: review)
+                    }
                 }
             }
         }
@@ -99,17 +102,29 @@ private extension ProductDetailView{
                         .cornerRadius(6)
                     ,alignment:.leading)
                 .cornerRadius(6)
-            Button(action: {
-                //펀딩창으로 연결
-            }) {
-                Capsule()
-                    .stroke(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 55)
-                    .overlay(Text("펀딩하기")
-                        .font(.system(size: 20)).fontWeight(.medium)
-                        .foregroundColor(Color.black))
-                    .padding(.vertical, 8)
+            ZStack {
+              NavigationLink(
+                destination: {
+                    ParticipateView(product: product)
+                },
+                label: {
+                  EmptyView()
+                }
+              )
+              .opacity(0)
+              
+              HStack {
+                  Capsule()
+                            .stroke(Color.black)
+                            .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 55)
+                            .overlay(Text("펀딩하기")
+                                .font(.system(size: 20)).fontWeight(.medium)
+                                .foregroundColor(Color.black))
+                            .padding(.vertical, 8)
+                    
+              }
             }
+            
             Text("참여내역")
             HStack{
                 Spacer()

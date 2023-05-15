@@ -46,7 +46,7 @@ private extension FundingProduct {
               .frame(width: 80,height:80)
               .clipShape(Circle())
           Text(product.username)
-          Text("D-5") // product.~~ 형태로 수정 필요
+          Text("D"+days(from: product.bday)) // product.~~ 형태로 수정 필요
               .font(.title2)
       }
   }
@@ -85,6 +85,39 @@ private extension FundingProduct {
             .cornerRadius(6)
 //                ProgressBar()
 //                Text("\(Int(progress))%")
+    }
+    func days(from dateStr: String) -> String {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        var daysCount:Int = 0
+        let components1 = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        var components = DateComponents()
+        components.day = components1.day
+        components.month = components1.month
+        let startDate = calendar.date(from: components)
+        let c = dateStr.index(dateStr.startIndex,offsetBy: 2)
+        var endIndex = dateStr.index(dateStr.startIndex,offsetBy: 1)
+        components.month = Int(dateStr[dateStr.startIndex...endIndex])
+        endIndex = dateStr.index(c,offsetBy: 1)
+        components.day = Int(dateStr[c...endIndex])
+        let specialDay = calendar.date(from: components)
+        
+        daysCount = calendar.dateComponents([.day], from: specialDay ?? Date(), to: startDate!).day!
+        daysCount *= -1
+        if daysCount<0
+        {
+            return String(daysCount)
+        }
+        else if daysCount==0
+        {
+            return "-day"
+        }
+        else// if daysCount<4
+        {
+            return "-"+String(daysCount)
+            //이거 +가 아니라 -가 되어야하는거 아니야??
+        }
+        //날짜 처리해야함.
     }
 }
 
