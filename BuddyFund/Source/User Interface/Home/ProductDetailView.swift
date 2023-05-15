@@ -61,10 +61,12 @@ private extension ProductDetailView{
         }
         else// if daysCount<4
         {
-            return "+"+String(daysCount)
+            return "-"+String(daysCount)
+            //이거 +가 아니라 -가 되어야하는거 아니야??
         }
         //날짜 처리해야함.
     }
+    
     var productDescription : some View {
         VStack(alignment: .leading, spacing: 16){
             Spacer()
@@ -109,7 +111,11 @@ private extension ProductDetailView{
                     .padding(.vertical, 8)
             }
             Text("참여내역")
-            Text("총"+"변수"+"명이 참여하였습니다.")//.frame(alignment: .leading)위의 vstack leading때문에 가운데 정렬 안됨
+            HStack{
+                Spacer()
+                Text("총 "+"변수"+"명이 참여하였습니다.")
+                Spacer()
+            }
         }
     }
     func splitText(_ text: String) -> String {
