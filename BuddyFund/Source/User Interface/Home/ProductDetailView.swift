@@ -24,17 +24,20 @@ private extension ProductDetailView{
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
-        NavigationView{
-            
-            List{
-                productImage
-                self.productDescription
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(reviewSamples, id: \.self) { review in
-                        reviewBox(review: review)
+        GeometryReader{ g in
+            NavigationView{
+                
+                List{
+                    productImage
+                    self.productDescription
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(reviewSamples, id: \.self) { review in
+                            reviewBox(review: review)
+                        }
                     }
-                }
+                }.frame(width:400)
             }
+            
         }
     }
     func calculateBirthdayDday(birthday: String) -> String {
@@ -83,26 +86,30 @@ private extension ProductDetailView{
     
     var productDescription : some View {
         VStack(alignment: .leading, spacing: 16){
-            Spacer()
             HStack{
                 Text(product.title)
                     .font(.largeTitle).fontWeight(.medium)
+                    .frame(width:320, height: 60, alignment: .leading)
                     .foregroundColor(.black)
+                    .minimumScaleFactor(0.3)
+                
                 Spacer()
                 Image(systemName: "star")
                     .imageScale(.large)
                     .foregroundColor(Color.blue)
                     .frame(width:32, height: 32)
             }
-            Text(product.username+"님의 생일이 "+calculateBirthdayDday(birthday: product.bday))
-            Text(splitText(product.description))
-                .foregroundColor(.secondary)//color extension을 안해서 secondary extension이 아님
-                .fixedSize()
+            Text(product.username+"님의 생일 "+calculateBirthdayDday(birthday: product.bday))
+            Text(product.description)
+                .fixedSize(horizontal: false, vertical: true)
+                    .frame(minWidth: 350, maxWidth: 400, minHeight: 20, maxHeight: 160, alignment: .leading)
+                .foregroundColor(.secondary)
+                .padding(.vertical)
             Text(product.account)
             HStack{
                 Text("현재진행률")
                 Spacer()
-                Text("채워진 금액/목표 금액")
+                Text("채워진 금액/\(product.price)")
             }
             Rectangle()
                 .frame(height: 10)
@@ -144,18 +151,27 @@ private extension ProductDetailView{
             }
         }
     }
-    func splitText(_ text: String) -> String {
-        guard !text.isEmpty else { return text }
-        let centerIdx = text.index(text.startIndex, offsetBy: text.count / 2)
-        let centerSpaceIdx = text[..<centerIdx].lastIndex(of: " ") ?? text[centerIdx...].firstIndex(of: " ") ?? text.index(before: text.endIndex)
-        let afterSpaceIdx = text.index(after: centerSpaceIdx)
-        let lhsString = text[..<afterSpaceIdx].trimmingCharacters(in: .whitespaces)
-        let rhsString = text[afterSpaceIdx...].trimmingCharacters(in: .whitespaces)
-        return String(lhsString + "\n" + rhsString)
+    
+    func stringNumberSpace(text: String)->String{
+        var tempString = text
+        var result = ""
+        var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
+        var eIndex = tempString.index(tempString.startIndex,offsetBy: 25)
+        for i in 0..<tempString.count{
+            result += tempString[sIndex..<eIndex]
+            if ((tempString.count-1-i) % 25 == 0){
+                result+="\n"
+            }
+            sIndex = eIndex
+            eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
+        }
+        result += tempString[sIndex..<tempString.endIndex]
+        
+        return result
     }
 }
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(product: productSamples[1])
+        ProductDetailView(product: productSamples[0])
     }
 }

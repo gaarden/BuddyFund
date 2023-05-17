@@ -17,7 +17,6 @@ struct Home: View {
                   NavigationLink(
                     destination: {
                         ProductDetailView(product: product)
-//                          .navigationBarBackButtonHidden()
                     },
                     label: {
                       EmptyView()
@@ -28,8 +27,10 @@ struct Home: View {
                   HStack {
                       FundingProduct(product: product)
                   }
+                  
                 }
               }
+              .listStyle(PlainListStyle())
               .navigationTitle("진행중인 펀딩")
             }
     }

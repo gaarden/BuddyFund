@@ -46,7 +46,7 @@ private extension FundingProduct {
               .frame(width: 80,height:80)
               .clipShape(Circle())
           Text(product.username)
-          Text(calculateBirthdayDday(birthday: product.bday)) // product.~~ 형태로 수정 필요
+          Text(calculateBirthdayDday(birthday: product.bday))
               .font(.title2)
       }
   }
@@ -55,12 +55,13 @@ private extension FundingProduct {
       VStack(alignment: .leading){
           Text(product.title)
               .font(.title2)
+              .frame(maxWidth: 200, maxHeight: 100, alignment: .leading)
               .fontWeight(.bold)
+              .minimumScaleFactor(0.3)
           Spacer()
           Text(product.description)
               .font(.footnote)
               .foregroundColor(.secondary)
-          Spacer()
       }.padding(5)
   }
   
@@ -130,10 +131,19 @@ private extension FundingProduct {
         
         return "D-\(daysUntilBirthday)"
     }
+    func splitText(_ text: String) -> String {
+        guard !text.isEmpty else { return text }
+        let centerIdx = text.index(text.startIndex, offsetBy: text.count / 2)
+        let centerSpaceIdx = text[..<centerIdx].lastIndex(of: " ") ?? text[centerIdx...].firstIndex(of: " ") ?? text.index(before: text.endIndex)
+        let afterSpaceIdx = text.index(after: centerSpaceIdx)
+        let lhsString = text[..<afterSpaceIdx].trimmingCharacters(in: .whitespaces)
+        let rhsString = text[afterSpaceIdx...].trimmingCharacters(in: .whitespaces)
+        return String(lhsString + "\n" + rhsString)
+    }
 }
 
 struct FundingProduct_Previews: PreviewProvider {
     static var previews: some View {
-        FundingProduct(product: productSamples[0])
+        FundingProduct(product: productSamples[1]).padding()
     }
 }

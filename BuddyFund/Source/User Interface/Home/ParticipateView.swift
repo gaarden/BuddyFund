@@ -23,7 +23,7 @@ struct ParticipateView: View {
                         Text("현재진행률")
                             .font(.title3)
                         Spacer()
-                        Text("채워진 금액/목표 금액")
+                        Text("채워진 금액/\(product.price)")
                             .font(.title3)
                     }.padding([.vertical])
                     Rectangle()
