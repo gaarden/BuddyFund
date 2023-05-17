@@ -10,6 +10,7 @@ import SwiftUI
 struct ParticipateView: View {
     let product : Product
     @State var amount: String = ""
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView{
@@ -43,7 +44,9 @@ struct ParticipateView: View {
                     Text("입력된 금액 : "+stringNumberComma(number:amount))
                         .font(.title2)
                     Button(action: {
-                        //펀딩창으로 연결
+                        if stringNumberComma(number: amount) != "" {
+                            self.showingAlert.toggle()
+                        }
                     }) {
                         Capsule()
                             .stroke(Color.black)
@@ -52,6 +55,9 @@ struct ParticipateView: View {
                                 .font(.system(size: 20)).fontWeight(.medium)
                                 .foregroundColor(Color.black))
                             .padding(.vertical, 8)
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("금액 확인"), message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?"), primaryButton: .cancel(Text("취소")), secondaryButton: .default(Text("펀딩하기"), action: {}))
                     }
                 }
                 .padding()

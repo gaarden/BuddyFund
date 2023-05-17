@@ -94,7 +94,7 @@ private extension ProductDetailView{
                     .foregroundColor(Color.blue)
                     .frame(width:32, height: 32)
             }
-            Text(product.username+"님의 생일이 D"+calculateBirthdayDday(birthday: product.bday))
+            Text(product.username+"님의 생일이 "+calculateBirthdayDday(birthday: product.bday))
             Text(splitText(product.description))
                 .foregroundColor(.secondary)//color extension을 안해서 secondary extension이 아님
                 .fixedSize()
