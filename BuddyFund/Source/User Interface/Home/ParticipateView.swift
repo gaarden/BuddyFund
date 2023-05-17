@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ParticipateView: View {
     let product : Product
+    @State var amount: String = ""
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView{
             VStack{
                 VStack(alignment: .leading){
-                    Text(product.username+"님의 생일 : D"+days(from: product.bday))
+                    Text(product.username+"님의 생일 : "+calculateBirthdayDday(birthday: product.bday))
                         .font(.title)
                         .padding([.vertical])
                     HStack{
@@ -33,15 +35,18 @@ struct ParticipateView: View {
                                 .cornerRadius(6)
                             ,alignment:.leading)
                         .cornerRadius(6)
-                    Text("펀딩할 금액을 입력하세요.")
-                        .font(.title3)
-                        .padding(.vertical)
-                    Rectangle()
-                        .stroke(Color.gray)
+                    TextField("펀딩할 금액을 입력하세요",text: $amount)
+                        .multilineTextAlignment(.center)
+                        .font(.title)
                         .frame(height: 50)
-                        .overlay(Text("텍스트 박스 들어갈 위치"))
+                        .background(Rectangle().stroke())
+                        .padding([.vertical])
+                    Text("입력된 금액 : "+stringNumberComma(number:amount))
+                        .font(.title2)
                     Button(action: {
-                        //펀딩창으로 연결
+                        if stringNumberComma(number: amount) != "" {
+                            self.showingAlert.toggle()
+                        }
                     }) {
                         Capsule()
                             .stroke(Color.black)
@@ -51,6 +56,9 @@ struct ParticipateView: View {
                                 .foregroundColor(Color.black))
                             .padding(.vertical, 8)
                     }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("금액 확인"), message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?"), primaryButton: .cancel(Text("취소")), secondaryButton: .default(Text("펀딩하기"), action: {}))
+                    }
                 }
                 .padding()
                 Spacer()
@@ -59,38 +67,71 @@ struct ParticipateView: View {
     }
 }
 private extension ParticipateView {
-    func days(from dateStr: String) -> String {
-        let calendar = Calendar.current
-        let currentDate = Date()
-        var daysCount:Int = 0
-        let components1 = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        var components = DateComponents()
-        components.day = components1.day
-        components.month = components1.month
-        let startDate = calendar.date(from: components)
-        let c = dateStr.index(dateStr.startIndex,offsetBy: 2)
-        var endIndex = dateStr.index(dateStr.startIndex,offsetBy: 1)
-        components.month = Int(dateStr[dateStr.startIndex...endIndex])
-        endIndex = dateStr.index(c,offsetBy: 1)
-        components.day = Int(dateStr[c...endIndex])
-        let specialDay = calendar.date(from: components)
+    func calculateBirthdayDday(birthday: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMdd"
         
-        daysCount = calendar.dateComponents([.day], from: specialDay ?? Date(), to: startDate!).day!
-        daysCount *= -1
-        if daysCount<0
-        {
-            return String(daysCount)
+        // 현재 날짜
+        let currentDate = Date()
+        var currentDateString = dateFormatter.string(from: currentDate)
+
+        // 올해의 생일
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        let birthdayString = "\(currentYear)\(birthday)"
+
+        // 생일이 지난 경우 내년 생일로 계산
+        var nextBirthdayDateString = "\(currentYear)\(birthday)"
+        dateFormatter.dateFormat = "YYYYMMdd"
+        if let nextBirthdayDate = dateFormatter.date(from: nextBirthdayDateString){
+            dateFormatter.dateFormat = "YYYYMMdd"
+            currentDateString = dateFormatter.string(from: currentDate)
+            nextBirthdayDateString = dateFormatter.string(from: nextBirthdayDate)
+
+            if nextBirthdayDateString < currentDateString {
+            nextBirthdayDateString = "\(currentYear + 1)\(birthday)"
         }
-        else if daysCount==0
-        {
-            return "-day"
+            else if nextBirthdayDateString == currentDateString {
+                return "D-day"
+            }
         }
-        else// if daysCount<4
+        dateFormatter.dateFormat = "YYYYMMdd"
+        // 날짜 계산
+        let calendar = Calendar.current
+        let birthdayDate = dateFormatter.date(from: nextBirthdayDateString)!
+        let components = calendar.dateComponents([.day], from: currentDate, to: birthdayDate)
+        dateFormatter.dateFormat = "YYYY"
+        let c = nextBirthdayDateString.index(nextBirthdayDateString.startIndex,offsetBy: 3)
+        if (Int(nextBirthdayDateString[nextBirthdayDateString.startIndex...c]) == currentYear)
         {
-            return "-"+String(daysCount)
-            //이거 +가 아니라 -가 되어야하는거 아니야??
+            let daysUntilBirthday = components.day!+1
+            return("D-\(daysUntilBirthday)")
         }
-        //날짜 처리해야함.
+        let daysUntilBirthday = components.day!
+        
+        return "D-\(daysUntilBirthday)"
+    }
+    func stringNumberComma(number: String)->String{
+        let temp = Int(number)
+        var tempString = ""
+        var result = ""
+        if let convertedNumber = temp {
+            if convertedNumber<0 {
+                return "0보다 큰 값을 입력하세요."
+            }
+            tempString = String(convertedNumber)
+            var index = tempString.startIndex
+            var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
+            var eIndex = tempString.index(tempString.startIndex,offsetBy: 1)
+            for i in 0..<tempString.count{
+                result += tempString[sIndex..<eIndex]
+                if ((tempString.count-1-i) % 3 == 0)&&(tempString.count-1 != i){
+                    result+=","
+                }
+                sIndex = eIndex
+                eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
+            }
+        }
+        return result
     }
 }
 
