@@ -37,38 +37,48 @@ private extension ProductDetailView{
             }
         }
     }
-    func days(from dateStr: String) -> String {
-        let calendar = Calendar.current
-        let currentDate = Date()
-        var daysCount:Int = 0
-        let components1 = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        var components = DateComponents()
-        components.day = components1.day
-        components.month = components1.month
-        let startDate = calendar.date(from: components)
-        let c = dateStr.index(dateStr.startIndex,offsetBy: 2)
-        var endIndex = dateStr.index(dateStr.startIndex,offsetBy: 1)
-        components.month = Int(dateStr[dateStr.startIndex...endIndex])
-        endIndex = dateStr.index(c,offsetBy: 1)
-        components.day = Int(dateStr[c...endIndex])
-        let specialDay = calendar.date(from: components)
+    func calculateBirthdayDday(birthday: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMdd"
         
-        daysCount = calendar.dateComponents([.day], from: specialDay ?? Date(), to: startDate!).day!
-        daysCount *= -1
-        if daysCount<0
-        {
-            return String(daysCount)
+        // 현재 날짜
+        let currentDate = Date()
+        var currentDateString = dateFormatter.string(from: currentDate)
+
+        // 올해의 생일
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        let birthdayString = "\(currentYear)\(birthday)"
+
+        // 생일이 지난 경우 내년 생일로 계산
+        var nextBirthdayDateString = "\(currentYear)\(birthday)"
+        dateFormatter.dateFormat = "YYYYMMdd"
+        if let nextBirthdayDate = dateFormatter.date(from: nextBirthdayDateString){
+            dateFormatter.dateFormat = "YYYYMMdd"
+            currentDateString = dateFormatter.string(from: currentDate)
+            nextBirthdayDateString = dateFormatter.string(from: nextBirthdayDate)
+
+            if nextBirthdayDateString < currentDateString {
+            nextBirthdayDateString = "\(currentYear + 1)\(birthday)"
         }
-        else if daysCount==0
-        {
-            return "-day"
+            else if nextBirthdayDateString == currentDateString {
+                return "D-day"
+            }
         }
-        else// if daysCount<4
+        dateFormatter.dateFormat = "YYYYMMdd"
+        // 날짜 계산
+        let calendar = Calendar.current
+        let birthdayDate = dateFormatter.date(from: nextBirthdayDateString)!
+        let components = calendar.dateComponents([.day], from: currentDate, to: birthdayDate)
+        dateFormatter.dateFormat = "YYYY"
+        let c = nextBirthdayDateString.index(nextBirthdayDateString.startIndex,offsetBy: 3)
+        if (Int(nextBirthdayDateString[nextBirthdayDateString.startIndex...c]) == currentYear)
         {
-            return "-"+String(daysCount)
-            //이거 +가 아니라 -가 되어야하는거 아니야??
+            let daysUntilBirthday = components.day!+1
+            return("D-\(daysUntilBirthday)")
         }
-        //날짜 처리해야함.
+        let daysUntilBirthday = components.day!
+        
+        return "D-\(daysUntilBirthday)"
     }
     
     var productDescription : some View {
@@ -84,7 +94,7 @@ private extension ProductDetailView{
                     .foregroundColor(Color.blue)
                     .frame(width:32, height: 32)
             }
-            Text(product.username+"님의 생일이 D"+days(from: product.bday))
+            Text(product.username+"님의 생일이 D"+calculateBirthdayDday(birthday: product.bday))
             Text(splitText(product.description))
                 .foregroundColor(.secondary)//color extension을 안해서 secondary extension이 아님
                 .fixedSize()
