@@ -27,8 +27,10 @@ struct Home: View {
                   HStack {
                       FundingProduct(product: product)
                   }
+                  
                 }
               }
+              .listStyle(PlainListStyle())
               .navigationTitle("진행중인 펀딩")
             }
     }
