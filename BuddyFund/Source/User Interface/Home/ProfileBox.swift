@@ -22,7 +22,7 @@ struct ProfileBox: View {
                         .padding([.vertical],1)
                     Text("\(product.username)님의 생일이 \(calculateBirthdayLeftDay(birthday: product.bday))")
                         .font(.title3)
-                    fundDayText(num:calculateBirthdayDdayInt(birthday: product.bday))
+                    fundDayButton(num:calculateBirthdayDdayInt(birthday: product.bday))
                 })
         }.frame(width: 340,height: 400)
             .minimumScaleFactor(0.3)
@@ -46,7 +46,6 @@ private extension ProfileBox{
 
         // 올해의 생일
         let currentYear = Calendar.current.component(.year, from: currentDate)
-        let birthdayString = "\(currentYear)\(birthday)"
 
         // 생일이 지난 경우 내년 생일로 계산
         var nextBirthdayDateString = "\(currentYear)\(birthday)"
@@ -89,7 +88,6 @@ private extension ProfileBox{
         
         // 올해의 생일
         let currentYear = Calendar.current.component(.year, from: currentDate)
-        let birthdayString = "\(currentYear)\(birthday)"
         
         // 생일이 지난 경우 내년 생일로 계산
         var nextBirthdayDateString = "\(currentYear)\(birthday)"
@@ -124,7 +122,7 @@ private extension ProfileBox{
         return daysUntilBirthday
         
     }
-    func fundDayText(num: Int)->some View {
+    func fundDayButton(num: Int)->some View {
         
         if num >= 15 && num <= 362 {
                 return Button(
