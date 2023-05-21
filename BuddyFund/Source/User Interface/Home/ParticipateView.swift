@@ -77,7 +77,6 @@ private extension ParticipateView {
 
         // 올해의 생일
         let currentYear = Calendar.current.component(.year, from: currentDate)
-        let birthdayString = "\(currentYear)\(birthday)"
 
         // 생일이 지난 경우 내년 생일로 계산
         var nextBirthdayDateString = "\(currentYear)\(birthday)"
@@ -119,7 +118,6 @@ private extension ParticipateView {
                 return "0보다 큰 값을 입력하세요."
             }
             tempString = String(convertedNumber)
-            var index = tempString.startIndex
             var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
             var eIndex = tempString.index(tempString.startIndex,offsetBy: 1)
             for i in 0..<tempString.count{

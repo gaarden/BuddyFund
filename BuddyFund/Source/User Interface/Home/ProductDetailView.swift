@@ -50,7 +50,6 @@ private extension ProductDetailView{
 
         // 올해의 생일
         let currentYear = Calendar.current.component(.year, from: currentDate)
-        let birthdayString = "\(currentYear)\(birthday)"
 
         // 생일이 지난 경우 내년 생일로 계산
         var nextBirthdayDateString = "\(currentYear)\(birthday)"
@@ -150,24 +149,6 @@ private extension ProductDetailView{
                 Spacer()
             }
         }
-    }
-    
-    func stringNumberSpace(text: String)->String{
-        var tempString = text
-        var result = ""
-        var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
-        var eIndex = tempString.index(tempString.startIndex,offsetBy: 25)
-        for i in 0..<tempString.count{
-            result += tempString[sIndex..<eIndex]
-            if ((tempString.count-1-i) % 25 == 0){
-                result+="\n"
-            }
-            sIndex = eIndex
-            eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
-        }
-        result += tempString[sIndex..<tempString.endIndex]
-        
-        return result
     }
 }
 struct ProductDetailView_Previews: PreviewProvider {
