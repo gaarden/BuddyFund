@@ -12,6 +12,10 @@
 		53471F592A1139D200E2E365 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53471F582A1139D200E2E365 /* Review.swift */; };
 		5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5350F1D72A037627003C1E1C /* FundingProduct.swift */; };
 		537D3CC92A1206E40000676B /* ParticipateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D3CC82A1206E40000676B /* ParticipateView.swift */; };
+		539E53222A1A724300631DF9 /* Mypage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53212A1A724300631DF9 /* Mypage.swift */; };
+		539E53242A1A726100631DF9 /* ProfileBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53232A1A726100631DF9 /* ProfileBox.swift */; };
+		539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */; };
+		539E53282A1A79F700631DF9 /* MyFundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53272A1A79F700631DF9 /* MyFundListView.swift */; };
 		EF5F78322A1374D9002E0651 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */; };
 		EF5F78352A1375BE002E0651 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EF5F78342A1375BE002E0651 /* FirebaseAuth */; };
 		EF5F78372A1375BE002E0651 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EF5F78362A1375BE002E0651 /* FirebaseFirestore */; };
@@ -36,6 +40,10 @@
 		53471F582A1139D200E2E365 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		5350F1D72A037627003C1E1C /* FundingProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingProduct.swift; sourceTree = "<group>"; };
 		537D3CC82A1206E40000676B /* ParticipateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateView.swift; sourceTree = "<group>"; };
+		539E53212A1A724300631DF9 /* Mypage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mypage.swift; sourceTree = "<group>"; };
+		539E53232A1A726100631DF9 /* ProfileBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBox.swift; sourceTree = "<group>"; };
+		539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateFundListView.swift; sourceTree = "<group>"; };
+		539E53272A1A79F700631DF9 /* MyFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFundListView.swift; sourceTree = "<group>"; };
 		EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F598B1512A034BAC005D20F7 /* BuddyFund.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyFund.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F598B1562A034BAC005D20F7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 				53471F542A0F5D4400E2E365 /* ProductDetailView.swift */,
 				53471F562A11075B00E2E365 /* reviewBox.swift */,
 				537D3CC82A1206E40000676B /* ParticipateView.swift */,
+				539E53212A1A724300631DF9 /* Mypage.swift */,
+				539E53232A1A726100631DF9 /* ProfileBox.swift */,
+				539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */,
+				539E53272A1A79F700631DF9 /* MyFundListView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -262,10 +274,14 @@
 			files = (
 				F598B1652A034C55005D20F7 /* AppDelegate.swift in Sources */,
 				F598B1572A034BAC005D20F7 /* Home.swift in Sources */,
+				539E53222A1A724300631DF9 /* Mypage.swift in Sources */,
 				F598B1672A034C61005D20F7 /* SceneDelegate.swift in Sources */,
+				539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */,
 				F5CD23C52A0672F4008A2171 /* ProgressBar.swift in Sources */,
 				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 				537D3CC92A1206E40000676B /* ParticipateView.swift in Sources */,
+				539E53242A1A726100631DF9 /* ProfileBox.swift in Sources */,
+				539E53282A1A79F700631DF9 /* MyFundListView.swift in Sources */,
 				F5B37DC92A0889D700ABDC74 /* Present.swift in Sources */,
 				53471F592A1139D200E2E365 /* Review.swift in Sources */,
 				F5B37DC72A08869800ABDC74 /* Product.swift in Sources */,

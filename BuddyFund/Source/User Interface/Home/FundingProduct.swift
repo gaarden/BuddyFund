@@ -98,8 +98,7 @@ private extension FundingProduct {
 
         // 올해의 생일
         let currentYear = Calendar.current.component(.year, from: currentDate)
-        let birthdayString = "\(currentYear)\(birthday)"
-
+        
         // 생일이 지난 경우 내년 생일로 계산
         var nextBirthdayDateString = "\(currentYear)\(birthday)"
         dateFormatter.dateFormat = "YYYYMMdd"

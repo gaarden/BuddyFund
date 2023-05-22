@@ -17,7 +17,7 @@ struct Home: View {
                   NavigationLink(
                     destination: {
                         ProductDetailView(product: product)
-
+                    },
                     label: {
                       EmptyView()
                     }
