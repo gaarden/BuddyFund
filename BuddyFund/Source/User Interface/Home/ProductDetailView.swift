@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProductDetailView: View {
     let product : Product
@@ -18,7 +19,8 @@ struct ProductDetailView: View {
 }
 private extension ProductDetailView{
     var productImage : some View{
-        Image(self.product.itemImage)
+//        Image(self.product.itemImage)
+        KFImage(URL(string: self.product.itemImage))
             .resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity)
