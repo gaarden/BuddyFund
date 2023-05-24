@@ -18,6 +18,8 @@ struct ProduceFundingView: View {
     @State private var showSaveAlert = false
     @State private var selectedImage: UIImage?
     @State private var isShowingImagePicker = false
+    @State private var navigateToMypage = false
+    let product: Product
 
     var body: some View {
         NavigationView {
@@ -174,11 +176,19 @@ private extension ProduceFundingView {
                     title: Text("알림"),
                     message: Text("펀딩을 생성하시겠습니까?"),
                     primaryButton: .default(Text("확인"), action: {
-                        // 펀딩 생성 로직을 여기에 추가하세요.
+                        // 펀딩 생성 로직을 여기에 추가하세요. - 마이페이지로 이동
+                        navigateToMypage = true
                     }),
                     secondaryButton: .cancel(Text("취소"))
                 )
             }
+            .background(
+                NavigationLink(
+                    destination: Mypage(product: product),
+                    isActive: $navigateToMypage,
+                    label: { EmptyView() }
+                )
+            )
 
             Spacer()
         }
@@ -223,6 +233,7 @@ struct MultilineTextView: UIViewRepresentable {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProduceFundingView()
+        ProduceFundingView(product: productSamples[0])
     }
 }
+

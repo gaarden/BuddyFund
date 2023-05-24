@@ -49,7 +49,6 @@
 		539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateFundListView.swift; sourceTree = "<group>"; };
 		539E53272A1A79F700631DF9 /* MyFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFundListView.swift; sourceTree = "<group>"; };
 		EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EF8B64962A1CB70400E7AEC1 /* KakaoAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuth.swift; sourceTree = "<group>"; };
 		EF8B64982A1CB76F00E7AEC1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F598B1512A034BAC005D20F7 /* BuddyFund.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyFund.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +108,6 @@
 				F598B16C2A034CEC005D20F7 /* Resource */,
 				F598B16E2A034D87005D20F7 /* Supporting Files */,
 				F598B15A2A034BAD005D20F7 /* Preview Content */,
-				EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */,
 			);
 			path = BuddyFund;
 			sourceTree = "<group>";
@@ -314,7 +312,6 @@
 /* Begin XCBuildConfiguration section */
 		F598B15D2A034BAD005D20F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -375,7 +372,6 @@
 		};
 		F598B15E2A034BAD005D20F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -430,7 +426,6 @@
 		};
 		F598B1602A034BAD005D20F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -461,7 +456,6 @@
 		};
 		F598B1612A034BAD005D20F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF8B64942A1CACEF00E7AEC1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

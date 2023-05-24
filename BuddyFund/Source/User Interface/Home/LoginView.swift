@@ -18,22 +18,61 @@ struct LoginView: View {
     
     
     
-    var body: some View {
+    var body: some View { 
         VStack(spacing: 20) {
+            Spacer()
+            Text("BuddyFund")
+                .font(.title)
+                .bold()
+            Image(systemName: "gift.fill")
+                .resizable()
+                .imageScale(.large)
+                .foregroundColor(Color.gray)
+                .frame(width:64, height: 64)
+
             Text(loginStatus(kakaoAuth.isLoggedIn))
+            Spacer()
             
-            Button("카카오 로그인") {
-                kakaoAuth.kakaoLogin()
+            HStack {
+                Spacer()
+                Button("카카오계정으로 로그인하기") {
+                    kakaoAuth.kakaoLogin()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.pink)
+                .cornerRadius(8)
+                Spacer()
             }
-            .frame(width: 280, height: 60)
-            .border(.black, width: 1)
             
-            Button("카카오 로그아웃") {
-                kakaoAuth.kakaoLogout()
+            HStack {
+                Spacer()
+                Button("카카오 로그아웃") {
+                    kakaoAuth.kakaoLogout()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.pink)
+                .cornerRadius(8)
+                Spacer()
             }
-            .frame(width: 280, height: 60)
-            .border(.black, width: 1)
             
+            HStack {
+                Spacer()
+                Button("카카오계정으로 회원가입하기") {
+                    //
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.pink)
+                .cornerRadius(8)
+                Spacer()
+            }
+            
+            Spacer()
         }
     }
 }
@@ -43,3 +82,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+
