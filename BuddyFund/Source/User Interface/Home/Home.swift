@@ -9,15 +9,16 @@ import SwiftUI
 
 struct Home: View {
     let present : Present
+    @ObservedObject var viewModel = ProductsViewModel()
     
     var body: some View {
         NavigationView {
-              List(present.products){ product in
+            List(viewModel.products){ product in
                 ZStack {
                   NavigationLink(
                     destination: {
                         ProductDetailView(product: product)
-                    },
+                    },     
                     label: {
                       EmptyView()
                     }
