@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct FundingProduct: View {
     let product: Product
@@ -40,7 +41,8 @@ private extension FundingProduct {
     
   var profile: some View {
       VStack{
-          Image(product.profileImage)
+//          Image(product.profileImage)
+          KFImage(URL(string: product.profileImage))
               .resizable()
               .scaledToFill()
               .frame(width: 80,height:80)
@@ -66,7 +68,8 @@ private extension FundingProduct {
   }
   
     var productImage: some View {
-        Image(product.itemImage)
+//        Image(product.itemImage)
+        KFImage(URL(string: product.itemImage))
             .resizable()
             .scaledToFill()
             .frame(width: 100)
