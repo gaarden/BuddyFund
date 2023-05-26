@@ -23,12 +23,13 @@ struct FundingProduct: View {
                 .padding([.horizontal, .top], 5)
             HStack{
                 Spacer()
-                progressView
+                ProgressBar(progress: product.currentCollection)
                 Spacer()
                 Image(systemName:"star")
+                    .scaleEffect(1.1)
                 Spacer()
-            }.padding([.top, .bottom], 10)
-        }.frame(height: 200)
+            }
+        }.frame(height: 190)
         .background(Color.red.opacity(0.05))
         .background(Color.primary.colorInvert()) // 테두리에만 그림자하기 위한 것
         .cornerRadius(10)
@@ -72,24 +73,24 @@ private extension FundingProduct {
         KFImage(URL(string: product.itemImage))
             .resizable()
             .scaledToFill()
-            .frame(width: 100)
+            .frame(width: 100,height:133)
             .clipped()
             .padding(5)
     }
     
-    var progressView: some View {
-        Rectangle()
-            .frame(width:300, height: 10)
-            .overlay(
-                Rectangle()
-                .fill(.green)
-                .frame(width:200)
-                .cornerRadius(6)
-                     ,alignment:.leading)
-            .cornerRadius(6)
-//                ProgressBar()
-//                Text("\(Int(progress))%")
-    }
+//    var progressView: some View {
+//        Rectangle()
+//            .frame(width:300, height: 10)
+//            .overlay(
+//                Rectangle()
+//                .fill(.green)
+//                .frame(width:200)
+//                .cornerRadius(6)
+//                     ,alignment:.leading)
+//            .cornerRadius(6)
+////                ProgressBar()
+////                Text("\(Int(progress))%")
+//    }
     
     func calculateBirthdayDday(birthday: String) -> String {
         let dateFormatter = DateFormatter()
