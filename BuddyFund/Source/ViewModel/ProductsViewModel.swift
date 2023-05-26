@@ -43,6 +43,7 @@ class ProductsViewModel: ObservableObject {
                         let itemImage = data["itemUrl"] as? String ?? ""
                         let description = data["description"] as? String ?? ""
                         let price = data["price"] as? Int ?? 0
+                        let currentCollection = data["currentCollection"] as? Double ?? 0.0
                         let account = data["account"] as? String ?? ""
                         
                         // 해당 펀딩 생성자 정보를 가져오기 위해 "users" 컬렉션 접근
@@ -53,7 +54,7 @@ class ProductsViewModel: ObservableObject {
                                 if let username = userData?["name"] as? String,
                                    let profileImage = userData?["profileUrl"] as? String,
                                    let bday = userData?["birthday"] as? String {
-                                    let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, account: account)
+                                    let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, account: account)
                                     self.products.append(product)
                                     print("product list: \(product)")
                                 }
