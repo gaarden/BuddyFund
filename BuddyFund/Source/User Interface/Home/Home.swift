@@ -16,7 +16,7 @@ struct Home: View {
             List(viewModel.products){ product in
                 ZStack {
                   NavigationLink(
-                    destination: {정"
+                    destination: {
                         ProductDetailView(product: product)
                     },     
                     label: {

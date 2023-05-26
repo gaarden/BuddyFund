@@ -33,34 +33,38 @@ class ProductsViewModel: ObservableObject {
                 self.products.removeAll()
 //                print(documents)
                 
+                // Firebase에서 가져온 데이터로 Product 객체 생성
                 for document in documents {
                     let data = document.data()
+//                    print(data)
+                    let title = data["title"] as? String ?? ""
+                    let itemImage = data["itemUrl"] as? String ?? ""
+                    let description = data["description"] as? String ?? ""
+                    let price = data["price"] as? Int ?? 0
+                    let currentCollection = data["currentCollection"] as? Int ?? 0
+                    let account = data["account"] as? String ?? ""
                     
-                    // Firebase에서 가져온 데이터로 Product 객체 생성
-                    if let userId = data["ownerUid"] as? String {
-                        // products 에서 fetch
-                        let title = data["title"] as? String ?? ""
-                        let itemImage = data["itemUrl"] as? String ?? ""
-                        let description = data["description"] as? String ?? ""
-                        let price = data["price"] as? Int ?? 0
-                        let currentCollection = data["currentCollection"] as? Int ?? 0
-                        let account = data["account"] as? String ?? ""
-                        
-                        // 해당 펀딩 생성자 정보를 가져오기 위해 "users" 컬렉션 접근
-                        db.collection("users").document(userId).getDocument { (userDocument, userError) in
-                            if let userDocument = userDocument, userDocument.exists {
-                                let userData = userDocument.data()
+                    // 펀딩 생성자 정보 가져오기
+                    let writerRef = data["writerId"] as? DocumentReference
+                    
+                    writerRef?.getDocument(completion: { (snapshot, error) in
+                        if let error = error {
+                            print("Error fetching referenced document: \(error)")
+                        } else {
+                            if let userData = snapshot?.data() {
+//                                print(userData)
+                                let username = userData["name"] as? String ?? ""
+                                let profileImage = userData["profileUrl"] as? String ?? ""
+                                let bday = userData["birthday"] as? String ?? ""
                                 
-                                if let username = userData?["name"] as? String,
-                                   let profileImage = userData?["profileUrl"] as? String,
-                                   let bday = userData?["birthday"] as? String {
-                                    let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, account: account)
-                                    self.products.append(product)
-                                    print("product list: \(product)")
-                                }
+                                let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, account: account)
+                                
+                                self.products.append(product)
+                            } else {
+                                print("Error fetching referenced document")
                             }
                         }
-                    }
+                    })
                 }
             }
         }

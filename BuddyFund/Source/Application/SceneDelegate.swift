@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
-      //let rootView = Home(present: Present())
-      let rootView = LoginView()
+      let rootView = Home(present: Present())
+//      let rootView = LoginView()
       
     
     if let windowScene = scene as? UIWindowScene {
