@@ -43,7 +43,7 @@ class ProductsViewModel: ObservableObject {
                         let itemImage = data["itemUrl"] as? String ?? ""
                         let description = data["description"] as? String ?? ""
                         let price = data["price"] as? Int ?? 0
-                        let currentCollection = data["currentCollection"] as? Double ?? 0.0
+                        let currentCollection = data["currentCollection"] as? Int ?? 0
                         let account = data["account"] as? String ?? ""
                         
                         // 해당 펀딩 생성자 정보를 가져오기 위해 "users" 컬렉션 접근

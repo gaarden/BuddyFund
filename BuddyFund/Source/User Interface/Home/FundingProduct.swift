@@ -23,7 +23,7 @@ struct FundingProduct: View {
                 .padding([.horizontal, .top], 5)
             HStack{
                 Spacer()
-                ProgressBar(progress: product.currentCollection)
+                ProgressBar(progress: Double((product.currentCollection/product.price)))
                 Spacer()
                 Image(systemName:"star")
                     .scaleEffect(1.1)
