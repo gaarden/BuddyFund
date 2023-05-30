@@ -42,6 +42,7 @@ class ProductsViewModel: ObservableObject {
                     let description = data["description"] as? String ?? ""
                     let price = data["price"] as? Int ?? 0
                     let currentCollection = data["currentCollection"] as? Int ?? 0
+                    let isFavorite = data["isFavortie"] as? Bool ?? false
                     let account = data["account"] as? String ?? ""
                     
                     // 펀딩 생성자 정보 가져오기
@@ -57,7 +58,7 @@ class ProductsViewModel: ObservableObject {
                                 let profileImage = userData["profileUrl"] as? String ?? ""
                                 let bday = userData["birthday"] as? String ?? ""
                                 
-                                let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, account: account)
+                                let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account)
                                 
                                 self.products.append(product)
                             } else {

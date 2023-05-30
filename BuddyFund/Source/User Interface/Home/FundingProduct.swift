@@ -23,10 +23,9 @@ struct FundingProduct: View {
                 .padding([.horizontal, .top], 5)
             HStack{
                 Spacer()
-                ProgressBar(progress: Double((product.currentCollection/product.price)))
+                ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
                 Spacer()
-                Image(systemName:"star")
-                    .scaleEffect(1.1)
+                FavoriteButton(product: product)
                 Spacer()
             }
         }.frame(height: 190)
@@ -42,8 +41,8 @@ private extension FundingProduct {
     
   var profile: some View {
       VStack{
-//          Image(product.profileImage)
-          KFImage(URL(string: product.profileImage))
+          Image(product.profileImage)
+//          KFImage(URL(string: product.profileImage))
               .resizable()
               .scaledToFill()
               .frame(width: 80,height:80)
@@ -69,28 +68,14 @@ private extension FundingProduct {
   }
   
     var productImage: some View {
-//        Image(product.itemImage)
-        KFImage(URL(string: product.itemImage))
+        Image(product.itemImage)
+//        KFImage(URL(string: product.itemImage))
             .resizable()
             .scaledToFill()
             .frame(width: 100,height:133)
             .clipped()
             .padding(5)
     }
-    
-//    var progressView: some View {
-//        Rectangle()
-//            .frame(width:300, height: 10)
-//            .overlay(
-//                Rectangle()
-//                .fill(.green)
-//                .frame(width:200)
-//                .cornerRadius(6)
-//                     ,alignment:.leading)
-//            .cornerRadius(6)
-////                ProgressBar()
-////                Text("\(Int(progress))%")
-//    }
     
     func calculateBirthdayDday(birthday: String) -> String {
         let dateFormatter = DateFormatter()
