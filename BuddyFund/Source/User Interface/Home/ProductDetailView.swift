@@ -19,8 +19,8 @@ struct ProductDetailView: View {
 }
 private extension ProductDetailView{
     var productImage : some View{
-//        Image(self.product.itemImage)
-        KFImage(URL(string: self.product.itemImage))
+        Image(self.product.itemImage)
+//        KFImage(URL(string: self.product.itemImage))
             .resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity)
@@ -95,10 +95,8 @@ private extension ProductDetailView{
                     .minimumScaleFactor(0.3)
                 
                 Spacer()
-                Image(systemName: "star")
-                    .imageScale(.large)
-                    .foregroundColor(Color.blue)
-                    .frame(width:32, height: 32)
+                FavoriteButton(product: product)
+
             }
             Text(product.username+"님의 생일 "+calculateBirthdayDday(birthday: product.bday))
             Text(product.description)
@@ -110,17 +108,10 @@ private extension ProductDetailView{
             HStack{
                 Text("현재진행률")
                 Spacer()
-                Text("채워진 금액/\(product.price)")
+                Text("\(product.currentCollection)/\(product.price)")
             }
-            Rectangle()
-                .frame(height: 10)
-                .overlay(
-                    Rectangle()
-                        .fill(.green)
-                        .frame(width:200)
-                        .cornerRadius(6)
-                    ,alignment:.leading)
-                .cornerRadius(6)
+            ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
+                .frame(height:20)
             ZStack {
               NavigationLink(
                 destination: {
