@@ -14,21 +14,19 @@ struct ProductDetailView: View {
     var body: some View {
             descriptView
             .listStyle(.plain)
-            .edgesIgnoringSafeArea(.all)
         }
 }
 private extension ProductDetailView{
     var productImage : some View{
-        Image(self.product.itemImage)
 //        KFImage(URL(string: self.product.itemImage))
-            .resizable()
-            .scaledToFill()
+//        .resizable()
+//        .scaledToFill()
+        ResizedImage(self.product.itemImage)
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
         GeometryReader{ g in
             NavigationView{
-                
                 List{
                     productImage
                     self.productDescription
@@ -38,8 +36,9 @@ private extension ProductDetailView{
                         }
                     }
                 }.frame(width:400)
+                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2+88)
+                    .edgesIgnoringSafeArea([.vertical])
             }
-            
         }
     }
     func calculateBirthdayDday(birthday: String) -> String {
@@ -115,7 +114,7 @@ private extension ProductDetailView{
             ZStack {
               NavigationLink(
                 destination: {
-                    ParticipateView(product: product)
+                    ParticipateView(product: product).navigationBarBackButtonHidden()
                 },
                 label: {
                   EmptyView()

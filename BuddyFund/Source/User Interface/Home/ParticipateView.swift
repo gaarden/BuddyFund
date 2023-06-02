@@ -11,10 +11,12 @@ struct ParticipateView: View {
     let product : Product
     @State var amount: String = ""
     @State private var showingAlert = false
-    
+    @State private var showingPopup = false
+    @State var message: String = ""
     var body: some View {
         NavigationView{
             VStack(alignment: .leading){
+                Text(product.title).font(.largeTitle).bold().frame(height:140,alignment:.bottom)
                 Text(product.username+"님의 생일 : "+calculateBirthdayDday(birthday: product.bday))
                     .font(.title)
                     .padding([.vertical])
@@ -31,31 +33,49 @@ struct ParticipateView: View {
                     .multilineTextAlignment(.center)
                     .font(.title)
                     .frame(height: 50)
-                    .background(Rectangle().stroke())
-                    .padding([.vertical])
+                    .background(RoundedRectangle(cornerRadius: 6).stroke())
                 Text("입력된 금액 : "+stringNumberComma(number:amount))
                     .font(.title2)
+                TextEditor(text: $message)
+                    .font(Font.title3)
+                    .frame(height: 150)
+                    .overlay(RoundedRectangle(cornerRadius: 6).stroke())
+                    .overlay(Text("생일 축하 메세지를 남겨주세요~!")
+                        .padding()
+                        .foregroundColor(.gray)
+                        .opacity(message.isEmpty ? 0.7 : 0), alignment: .topLeading
+                        )
                 Button(action: {
                     if stringNumberComma(number: amount) != "" {
                         self.showingAlert.toggle()
                     }
                 }) {
                     Capsule()
-                        .stroke(Color.black)
+                        .fill(Color.indigo).opacity(0.4)
                         .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 50)
                         .overlay(Text("펀딩하기")
                             .font(.system(size: 20)).fontWeight(.medium)
                             .foregroundColor(Color.black))
                         .padding(.vertical, 8)
-                }
+                }.buttonStyle(ShrinkButtonStyle())
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("금액 확인"), message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?"), primaryButton: .cancel(Text("취소")), secondaryButton: .default(Text("펀딩하기"), action: {}))
+                    Alert(title: Text("금액 확인"),
+                          message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
+                          primaryButton: .default(
+                            Text("펀딩하기"),
+                            action: {
+                                showingPopup.toggle()
+                            }),
+                          secondaryButton: .cancel(Text("취소")))
                 }
                 Spacer()
             }
             .padding()
-            .navigationTitle(product.title)
+//            .navigationTitle(product.title)
+            .edgesIgnoringSafeArea([.vertical])
+            .popup(isPresented: $showingPopup){Text("✦ 펀딩완료 ✧").font(.system(size:24)).bold().multilineTextAlignment(.center)}
         }
+
     }
 }
 private extension ParticipateView {

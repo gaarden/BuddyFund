@@ -41,10 +41,11 @@ private extension FundingProduct {
     
   var profile: some View {
       VStack{
-          Image(product.profileImage)
+//          Image(product.profileImage)
 //          KFImage(URL(string: product.profileImage))
-              .resizable()
-              .scaledToFill()
+//              .resizable()
+//              .scaledToFill()
+          ResizedImage(product.profileImage)
               .frame(width: 80,height:80)
               .clipShape(Circle())
           Text(product.username)
@@ -68,10 +69,10 @@ private extension FundingProduct {
   }
   
     var productImage: some View {
-        Image(product.itemImage)
 //        KFImage(URL(string: product.itemImage))
-            .resizable()
-            .scaledToFill()
+//            .resizable()
+//            .scaledToFill()
+        ResizedImage(product.itemImage)
             .frame(width: 100,height:133)
             .clipped()
             .padding(5)
