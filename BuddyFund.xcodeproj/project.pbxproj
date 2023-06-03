@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1A4538612A1E84FB0014D480 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4538602A1E84FB0014D480 /* ProductsViewModel.swift */; };
 		1A4538642A1E88020014D480 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1A4538632A1E88020014D480 /* Kingfisher */; };
+		5339518C2A2A21E700EBC16C /* ResizedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339518B2A2A21E700EBC16C /* ResizedImage.swift */; };
+		533951902A2A2B3100EBC16C /* ShrinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339518F2A2A2B3100EBC16C /* ShrinkButtonStyle.swift */; };
+		533951922A2A2DA400EBC16C /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533951912A2A2DA400EBC16C /* Popup.swift */; };
 		533D5D4B2A2648B9005F520E /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533D5D4A2A2648B9005F520E /* FavoriteButton.swift */; };
 		533D5D4D2A264BBC005F520E /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533D5D4C2A264BBC005F520E /* Preview.swift */; };
 		53471F552A0F5D4400E2E365 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53471F542A0F5D4400E2E365 /* ProductDetailView.swift */; };
@@ -44,6 +47,9 @@
 
 /* Begin PBXFileReference section */
 		1A4538602A1E84FB0014D480 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		5339518B2A2A21E700EBC16C /* ResizedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedImage.swift; sourceTree = "<group>"; };
+		5339518F2A2A2B3100EBC16C /* ShrinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkButtonStyle.swift; sourceTree = "<group>"; };
+		533951912A2A2DA400EBC16C /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		533D5D4A2A2648B9005F520E /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		533D5D4C2A264BBC005F520E /* Preview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preview.swift; path = ../../../SweetSwiftUI/FruitMart/Source/Helper/CustomView/Preview.swift; sourceTree = "<group>"; };
 		53471F542A0F5D4400E2E365 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
@@ -197,8 +203,11 @@
 		F598B16B2A034CA0005D20F7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5339518B2A2A21E700EBC16C /* ResizedImage.swift */,
 				533D5D4C2A264BBC005F520E /* Preview.swift */,
 				F5B37DCA2A088BDD00ABDC74 /* BundleExtension.swift */,
+				5339518F2A2A2B3100EBC16C /* ShrinkButtonStyle.swift */,
+				533951912A2A2DA400EBC16C /* Popup.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F598B1652A034C55005D20F7 /* AppDelegate.swift in Sources */,
+				5339518C2A2A21E700EBC16C /* ResizedImage.swift in Sources */,
 				F598B1572A034BAC005D20F7 /* Home.swift in Sources */,
 				533D5D4D2A264BBC005F520E /* Preview.swift in Sources */,
 				539E53222A1A724300631DF9 /* Mypage.swift in Sources */,
@@ -327,6 +337,8 @@
 				EF8B64992A1CB76F00E7AEC1 /* LoginView.swift in Sources */,
 				533D5D4B2A2648B9005F520E /* FavoriteButton.swift in Sources */,
 				53471F552A0F5D4400E2E365 /* ProductDetailView.swift in Sources */,
+				533951922A2A2DA400EBC16C /* Popup.swift in Sources */,
+				533951902A2A2B3100EBC16C /* ShrinkButtonStyle.swift in Sources */,
 				F5E12CF12A1C7B6400DCE6FF /* ProduceFundingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
