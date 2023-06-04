@@ -29,7 +29,9 @@ struct Map_Watch_AppApp: App {
     var body: some Scene {
         // 나중에 각각의 유저세션을 인식하기 위해 환경변수로 세션 초기화 하고 넣어주는 과정 필요 ( NavigationView )
         WindowGroup {
-            Home().environmentObject(Present())
+//            Home().environmentObject(Present())
+            MainTabView()
+                .environmentObject(Present())
 //            LoginView()
             
         }
