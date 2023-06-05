@@ -35,10 +35,14 @@ private extension ProductDetailView{
                             reviewBox(review: review)
                         }
                     }
-                }.frame(width:400)
-                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2+88)
+                    Text("")
+                        .padding([.bottom],85)
+                }
+                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2+40)
                     .edgesIgnoringSafeArea([.vertical])
+                    .frame(height: g.size.height)
             }
+
         }
     }
     func calculateBirthdayDday(birthday: String) -> String {

@@ -14,41 +14,45 @@ struct Mypage: View {
     
     
     var body: some View {
-        VStack{
-            ProfileBox(product: product)
-                .scaleEffect(0.8)
-            HStack{
-                Button(
-                    action: {self.showingFundingItem = true}
-                ){Text("참여한 펀딩")}
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(width:130,height: 40)
-                    .background(Color.blue.opacity(0.9))
-                    .cornerRadius(6)
-                Button(
-                    action: {self.showingFundingItem = false}
-                ){Text("진행한 펀딩")}
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(width:130,height: 40)
-                    .background(Color.blue.opacity(0.9))
-                    .cornerRadius(6)
+        NavigationView{
+            VStack{
+                ProfileBox(product: product)
+                    .scaleEffect(0.8)
+                HStack{
+                    Button(
+                        action: {self.showingFundingItem = true}
+                    ){Text("참여한 펀딩")}
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width:130,height: 40)
+                        .background(Color.blue.opacity(0.9))
+                        .cornerRadius(6)
+                    Button(
+                        action: {self.showingFundingItem = false}
+                    ){Text("진행한 펀딩")}
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width:130,height: 40)
+                        .background(Color.blue.opacity(0.9))
+                        .cornerRadius(6)
+                    Spacer()
+                }
+                List{
+                    if showingFundingItem {
+                        participateFundList
+                    }
+                    else {
+                        myFundList
+                    }
+                    //                Text("진행한 펀딩이 없습니다.")
+                    //                FundingProduct(product: product)
+                    //                FundingProduct(product: product)
+                }.listStyle(.plain)
                 Spacer()
-            }
-            List{
-                if showingFundingItem {
-                    participateFundList
-                }
-                else {
-                    myFundList
-                }
-//                Text("진행한 펀딩이 없습니다.")
-//                FundingProduct(product: product)
-//                FundingProduct(product: product)
-            }.listStyle(.plain)
-            Spacer()
-        }.padding()
+            }.padding()
+                .navigationTitle("마이페이지")
+
+        }
     }
 }
 private extension Mypage {

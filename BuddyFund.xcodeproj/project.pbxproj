@@ -23,6 +23,7 @@
 		539E53242A1A726100631DF9 /* ProfileBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53232A1A726100631DF9 /* ProfileBox.swift */; };
 		539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */; };
 		539E53282A1A79F700631DF9 /* MyFundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E53272A1A79F700631DF9 /* MyFundListView.swift */; };
+		53DBE4CD2A2CF08F00DF97E0 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DBE4CC2A2CF08F00DF97E0 /* MainTabView.swift */; };
 		EF5F78352A1375BE002E0651 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EF5F78342A1375BE002E0651 /* FirebaseAuth */; };
 		EF5F78372A1375BE002E0651 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EF5F78362A1375BE002E0651 /* FirebaseFirestore */; };
 		EF5F78392A1375BE002E0651 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF5F78382A1375BE002E0651 /* FirebaseFirestoreSwift */; };
@@ -61,6 +62,7 @@
 		539E53232A1A726100631DF9 /* ProfileBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBox.swift; sourceTree = "<group>"; };
 		539E53252A1A79DE00631DF9 /* ParticipateFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateFundListView.swift; sourceTree = "<group>"; };
 		539E53272A1A79F700631DF9 /* MyFundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFundListView.swift; sourceTree = "<group>"; };
+		53DBE4CC2A2CF08F00DF97E0 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF8B64962A1CB70400E7AEC1 /* KakaoAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuth.swift; sourceTree = "<group>"; };
 		EF8B64982A1CB76F00E7AEC1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F598B1692A034C76005D20F7 /* Home */,
+				53DBE4CC2A2CF08F00DF97E0 /* MainTabView.swift */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				539E53222A1A724300631DF9 /* Mypage.swift in Sources */,
 				F598B1672A034C61005D20F7 /* SceneDelegate.swift in Sources */,
 				539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */,
+				53DBE4CD2A2CF08F00DF97E0 /* MainTabView.swift in Sources */,
 				F5CD23C52A0672F4008A2171 /* ProgressBar.swift in Sources */,
 				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 				537D3CC92A1206E40000676B /* ParticipateView.swift in Sources */,
