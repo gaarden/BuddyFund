@@ -21,7 +21,8 @@ private extension ProductDetailView{
 //        KFImage(URL(string: self.product.itemImage))
 //        .resizable()
 //        .scaledToFill()
-        ResizedImage(self.product.itemImage)
+//        ResizedImage(self.product.itemImage)
+        ShowImage(imageURL: product.itemImage)
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {

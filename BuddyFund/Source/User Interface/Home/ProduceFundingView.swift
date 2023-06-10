@@ -184,7 +184,7 @@ private extension ProduceFundingView {
             }
             .background(
                 NavigationLink(
-                    destination: Mypage(product: product),
+                    destination: Mypage(user:userSample),
                     isActive: $navigateToMypage,
                     label: { EmptyView() }
                 )

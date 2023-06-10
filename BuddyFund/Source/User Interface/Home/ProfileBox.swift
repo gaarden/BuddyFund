@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileBox: View {
-    let product : Product
+    let user : User
+    
     var body: some View {
         VStack(spacing: 0){
             productImage
@@ -17,12 +19,13 @@ struct ProfileBox: View {
                 .fill(.gray)
                 .opacity(0.1)
                 .overlay(VStack{
-                    Text(product.username).font(.title)
+                    Text(user.username)
+                        .font(.title)
                         .fontWeight(.medium)
                         .padding([.vertical],1)
-                    Text("\(product.username)님의 생일이 \(calculateBirthdayLeftDay(birthday: product.bday))")
+                    Text("\(user.username)님의 생일이 \(calculateBirthdayLeftDay(birthday: user.bday))")
                         .font(.title3)
-                    fundDayButton(num:calculateBirthdayDdayInt(birthday: product.bday))
+                    fundDayButton(num:calculateBirthdayDdayInt(birthday: user.bday))
                 })
         }.frame(width: 340,height: 400)
             .minimumScaleFactor(0.3)
@@ -30,8 +33,9 @@ struct ProfileBox: View {
 }
 private extension ProfileBox{
     var productImage: some View {
-        Image(product.profileImage)
-            .resizable()
+//        Image(user.profileImage)
+//        KFImage(URL(string: user.profileImage))
+        ShowImage(imageURL: user.profileImage, resized: false)
             .scaledToFill()
             .frame(width: 340,height: 250)
             .clipped()
@@ -150,6 +154,6 @@ private extension ProfileBox{
 }
 struct MypageBox_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileBox(product: productSamples[0])
+        ProfileBox(user: userSample)
     }
 }
