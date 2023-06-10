@@ -12,6 +12,8 @@ struct MainTabView: View {
         case home, myPage
     }
     @State private var selectedTab: Tabs = .home
+    @State private var userId = "testid" // 사용자 로그인 아이디 정보
+    @EnvironmentObject var userinfo: UserInfo
     
     var body: some View {
         TabView(selection: $selectedTab){
@@ -42,13 +44,16 @@ private extension MainTabView{
             .tabItem(image: "gift", text: "진행중인 펀딩")
     }
     var myPage: some View{
-        Mypage(product: productSamples[2])
+        Mypage(user: userinfo.user, product: productSamples[2])
             .tag(Tabs.myPage)
             .tabItem(image: "person", text: "마이페이지")
     }
 }
+
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView().environmentObject(Present())
+        MainTabView()
+            .environmentObject(Present())
+            .environmentObject(UserInfo(userid: "testid"))
     }
 }

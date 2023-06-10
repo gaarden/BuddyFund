@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct Mypage: View {
+    @State private var showingFundingItem: Bool = true
+    let user: User
     let product : Product
-    @State private var showingFundingItem:
-    Bool = true
-    
     
     var body: some View {
         NavigationView{
             VStack{
-                ProfileBox(product: product)
+                ProfileBox(user: user, product: product)
                     .scaleEffect(0.8)
                 HStack{
                     Button(
@@ -67,8 +66,8 @@ private extension Mypage {
 
 struct Mypage_Previews: PreviewProvider {
     static var previews: some View {
-        Mypage(product: productSamples[2])
-        ProfileBox(product: productSamples[1])
+        Mypage(user: userSample, product: productSamples[2])
+        ProfileBox(user: userSample, product: productSamples[1])
         
     }
 }

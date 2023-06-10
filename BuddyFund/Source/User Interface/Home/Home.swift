@@ -13,7 +13,8 @@ struct Home: View {
     
     var body: some View {
         NavigationView {
-            List(present.products){ product in
+            List(viewModel.products){ product in // DB 연결
+//            List(present.products){ product in
                 ZStack {
                   NavigationLink(
                     destination: {

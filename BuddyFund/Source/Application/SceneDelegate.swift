@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //      let rootView = Home(present: Present())
       let rootView = MainTabView()
           .environmentObject(Present())
+          .environmentObject(UserInfo(userid: "testid")) // 사용자 아이디 수정 필요
 //      let rootView = LoginView()
       
     
