@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct Home: View {
-    @EnvironmentObject private var present : Present
-    @ObservedObject var viewModel = ProductsViewModel()
+//    @EnvironmentObject private var present : Present
+    @EnvironmentObject private var productsInfo : ProductsViewModel
     
     var body: some View {
         NavigationView {
-            List(viewModel.products){ product in // DB 연결
+            List(productsInfo.products){ product in // DB 연결
 //            List(present.products){ product in
                 ZStack {
                   NavigationLink(
@@ -39,6 +39,8 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Preview(source:Home()).environmentObject(Present())
+        Preview(source:Home())
+//            .environmentObject(Present())
+            .environmentObject(ProductsViewModel(uid: "testid"))
     }
 }
