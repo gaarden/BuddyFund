@@ -53,7 +53,8 @@ private extension MainTabView{
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
-            .environmentObject(Present())
+//            .environmentObject(Present())
             .environmentObject(UserInfo(userid: "testid"))
+            .environmentObject(ProductsViewModel(uid: "testid"))
     }
 }
