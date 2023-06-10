@@ -10,6 +10,7 @@ import SwiftUI
 import Kingfisher
 
 struct ProductDetailView: View {
+    @EnvironmentObject private var reviewInfo : ReviewInfo
     let product : Product
     var body: some View {
             descriptView
@@ -32,7 +33,7 @@ private extension ProductDetailView{
                     productImage
                     self.productDescription
                     VStack(alignment: .leading, spacing: 10) {
-                        ForEach(reviewSamples, id: \.self) { review in
+                        ForEach(reviewInfo.reviews, id: \.self) { review in
                             reviewBox(review: review)
                         }
                     }
@@ -151,5 +152,6 @@ private extension ProductDetailView{
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailView(product: productSamples[0])
+            .environmentObject(ReviewInfo(pid: "RK0jXlcAcvM0EUQf93Hj"))
     }
 }

@@ -19,6 +19,7 @@ struct Home: View {
                   NavigationLink(
                     destination: {
                         ProductDetailView(product: product)
+                            .environmentObject(ReviewInfo(pid: product.pid))
                     },     
                     label: {
                       EmptyView()

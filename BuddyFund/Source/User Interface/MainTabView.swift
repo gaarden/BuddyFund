@@ -42,6 +42,7 @@ private extension MainTabView{
         Home()
             .tag(Tabs.home)
             .tabItem(image: "gift", text: "진행중인 펀딩")
+            .environmentObject(ProductsViewModel(uid: "testid"))
     }
     var myPage: some View{
         Mypage(user: userinfo.user)
@@ -55,6 +56,5 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView()
 //            .environmentObject(Present())
             .environmentObject(UserInfo(userid: "testid"))
-            .environmentObject(ProductsViewModel(uid: "testid"))
     }
 }

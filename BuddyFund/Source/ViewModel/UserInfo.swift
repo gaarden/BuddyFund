@@ -13,7 +13,7 @@ class UserInfo: ObservableObject {
     
     init(userid: String) {
         print("DEBUG:: Get user data from DB")
-        self.user = User(username: "", profileImage: "", bday: "")
+        self.user = User(uid:"", username: "", profileImage: "", bday: "")
         fetchUser(userid: userid)
     }
     
@@ -33,11 +33,12 @@ class UserInfo: ObservableObject {
             
             let userData = document.data()
             
+            let userid = document.documentID
             let username = userData["name"] as? String ?? ""
             let profileImage = userData["profileUrl"] as? String ?? ""
             let bday = userData["birthday"] as? String ?? ""
             
-            self.user = User(username: username, profileImage: profileImage, bday: bday)
+            self.user = User(uid: userid, username: username, profileImage: profileImage, bday: bday)
         }
     }
 }

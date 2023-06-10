@@ -73,6 +73,7 @@ class ProductsViewModel: ObservableObject {
                         self.products.removeAll()
                         
                         for document in documents {
+                            let pid = document.documentID
                             let data = document.data()
         //                    print(data)
                             let title = data["title"] as? String ?? ""
@@ -95,7 +96,7 @@ class ProductsViewModel: ObservableObject {
                                             let profileImage = userData["profileUrl"] as? String ?? ""
                                             let bday = userData["birthday"] as? String ?? ""
                                             
-                                            let product = Product(title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account)
+                                            let product = Product(pid:pid, title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account)
                                             
                                             self.products.append(product)
                                             
