@@ -44,7 +44,7 @@ private extension MainTabView{
             .tabItem(image: "gift", text: "진행중인 펀딩")
     }
     var myPage: some View{
-        Mypage(user: userinfo.user, product: productSamples[2])
+        Mypage(user: userinfo.user)
             .tag(Tabs.myPage)
             .tabItem(image: "person", text: "마이페이지")
     }

@@ -10,7 +10,6 @@ import Kingfisher
 
 struct ProfileBox: View {
     let user : User
-    let product : Product
     
     var body: some View {
         VStack(spacing: 0){
@@ -20,7 +19,6 @@ struct ProfileBox: View {
                 .fill(.gray)
                 .opacity(0.1)
                 .overlay(VStack{
-//                    Text(product.username)
                     Text(user.username)
                         .font(.title)
                         .fontWeight(.medium)
@@ -37,8 +35,6 @@ private extension ProfileBox{
     var productImage: some View {
 //        Image(user.profileImage)
 //        KFImage(URL(string: user.profileImage))
-//            .resizable()
-//            .scaledToFill()
         ShowImage(imageURL: user.profileImage, resized: false)
             .scaledToFill()
             .frame(width: 340,height: 250)
@@ -158,6 +154,6 @@ private extension ProfileBox{
 }
 struct MypageBox_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileBox(user: userSample, product: productSamples[0])
+        ProfileBox(user: userSample)
     }
 }
