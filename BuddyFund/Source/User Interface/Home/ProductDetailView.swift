@@ -32,6 +32,9 @@ private extension ProductDetailView{
                 List{
                     productImage
                     self.productDescription
+                    fundingbutton
+                    fundinglist
+                    
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach(reviewInfo.reviews, id: \.self) { review in
                             reviewBox(review: review)
@@ -44,9 +47,9 @@ private extension ProductDetailView{
                     .edgesIgnoringSafeArea([.vertical])
                     .frame(height: g.size.height)
             }
-
         }
     }
+    
     func calculateBirthdayDday(birthday: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMdd"
@@ -117,29 +120,32 @@ private extension ProductDetailView{
             }
             ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
                 .frame(height:20)
-            ZStack {
-              NavigationLink(
-                destination: {
-                    ParticipateView(product: product).navigationBarBackButtonHidden()
-                },
-                label: {
-                  EmptyView()
-                }
-              )
-              .opacity(0)
-              
-              HStack {
-                  Capsule()
-                            .stroke(Color.black)
-                            .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 55)
-                            .overlay(Text("펀딩하기")
-                                .font(.system(size: 20)).fontWeight(.medium)
-                                .foregroundColor(Color.black))
-                            .padding(.vertical, 8)
-                    
-              }
-            }
             
+        }
+    }
+    var fundingbutton : some View {
+        ZStack {
+          NavigationLink(
+            destination: {
+                ParticipateView(product: product).navigationBarBackButtonHidden()
+            },
+            label: {
+              EmptyView()
+            }
+          )
+          .opacity(0)
+            
+          Capsule()
+                    .stroke(Color.black)
+                    .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
+                    .overlay(Text("펀딩하기")
+                    .font(.system(size: 20)).fontWeight(.medium)
+                    .foregroundColor(Color.black))
+                    .padding(.vertical, 8)
+        }
+    }
+    var fundinglist: some View {
+        VStack(alignment: .leading){
             Text("참여내역")
             HStack{
                 Spacer()
