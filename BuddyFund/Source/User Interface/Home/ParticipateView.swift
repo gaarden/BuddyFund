@@ -6,78 +6,188 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ParticipateView: View {
-    let product : Product
+    var product : Product
     @State var amount: String = ""
     @State private var showingAlert = false
     @State private var showingPopup = false
+    @State private var nickname = ""
     @State var message: String = ""
+    @EnvironmentObject var userinfo: UserInfo
+    @EnvironmentObject var viewModel: ParticipateFundingViewModel
+    @EnvironmentObject var productsInfo: ProductsViewModel
+    
     var body: some View {
         NavigationView{
-            VStack(alignment: .leading){
+            ScrollView{
                 Text(product.title).font(.largeTitle).bold().frame(height:140,alignment:.bottom)
                 Text(product.username+"님의 생일 : "+calculateBirthdayDday(birthday: product.bday))
                     .font(.title)
                     .padding([.vertical])
-                HStack{
-                    Text("현재진행률")
-                        .font(.title3)
-                    Spacer()
-                    Text("\(product.currentCollection)/\(product.price)")
-                        .font(.title3)
-                }.padding([.vertical])
-                ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
-                    .frame(height: 20)
-                TextField("펀딩할 금액을 입력하세요",text: $amount)
-                    .multilineTextAlignment(.center)
-                    .font(.title)
-                    .frame(height: 50)
-                    .background(RoundedRectangle(cornerRadius: 6).stroke())
-                Text("입력된 금액 : "+stringNumberComma(number:amount))
-                    .font(.title2)
-                TextEditor(text: $message)
-                    .font(Font.title3)
-                    .frame(height: 150)
-                    .overlay(RoundedRectangle(cornerRadius: 6).stroke())
-                    .overlay(Text("생일 축하 메세지를 남겨주세요~!")
-                        .padding()
-                        .foregroundColor(.gray)
-                        .opacity(message.isEmpty ? 0.7 : 0), alignment: .topLeading
-                        )
-                Button(action: {
-                    if stringNumberComma(number: amount) != "" {
-                        self.showingAlert.toggle()
-                    }
-                }) {
-                    Capsule()
-                        .fill(Color.indigo).opacity(0.4)
-                        .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 50)
-                        .overlay(Text("펀딩하기")
-                            .font(.system(size: 20)).fontWeight(.medium)
-                            .foregroundColor(Color.black))
-                        .padding(.vertical, 8)
-                }.buttonStyle(ShrinkButtonStyle())
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("금액 확인"),
-                          message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
-                          primaryButton: .default(
-                            Text("펀딩하기"),
-                            action: {
-                                showingPopup.toggle()
-                            }),
-                          secondaryButton: .cancel(Text("취소")))
-                }
+                
+                progressBar
+                
+                fundingExp
+                
+                Rectangle()
+                    .frame(height: 2)
+                    .foregroundColor(.indigo)
+                    .padding(.bottom, 15)
+                
+                nicknameField
+                
+                messageField
+                
+                fundingCancelButton
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.bottom, 85)
 //            .navigationTitle(product.title)
             .edgesIgnoringSafeArea([.vertical])
-            .popup(isPresented: $showingPopup){Text("✦ 펀딩완료 ✧").font(.system(size:24)).bold().multilineTextAlignment(.center)}
+            .popup(isPresented: $showingPopup){
+                Text("✦ 펀딩완료 ✧")
+                .font(.system(size:24))
+                .bold()
+                .multilineTextAlignment(.center)
+            }
         }
 
     }
-}
+    
+    var progressBar: some View {
+        VStack {
+            HStack{
+                Text("현재진행률")
+                    .font(.title3)
+                Spacer()
+                Text("\(product.currentCollection)/\(product.price)")
+                    .font(.title3)
+            }.padding([.vertical])
+            ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
+                .frame(height: 20)
+        }
+    }
+
+    var fundingExp: some View {
+        VStack(alignment: .leading) {
+            TextField("펀딩할 금액을 입력하세요",text: $amount)
+                .multilineTextAlignment(.center)
+                .font(.title)
+                .frame(height: 50)
+                .background(RoundedRectangle(cornerRadius: 6).stroke())
+            Text("입력된 금액 : "+stringNumberComma(number:amount))
+                .font(.title2)
+        }
+        .padding(.bottom, 15)
+    }
+    
+    var fundingCancelButton: some View {
+        HStack {
+            Button(action: {
+                if stringNumberComma(number: amount) != "" {
+                    self.showingAlert.toggle()
+                }
+            }) {
+                Capsule()
+                    .fill(Color.indigo).opacity(0.4)
+                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 50)
+                    .overlay(Text("펀딩하기")
+                        .font(.system(size: 20)).fontWeight(.medium)
+                        .foregroundColor(Color.black))
+                    .padding(.vertical, 8)
+            }
+            .buttonStyle(ShrinkButtonStyle())
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("금액 확인"),
+                      message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
+                      primaryButton: .default(
+                        Text("펀딩하기"),
+                        action: {
+                            saveFundingDB()
+                            amount = ""
+                            nickname = "\(userinfo.user.username)"
+                            message = ""
+//                            showingPopup.toggle()
+                        }),
+                      secondaryButton: .cancel(Text("취소")))
+            }
+            // 취소버튼
+            Button(action: {
+                print("Cancle Funding")
+            }) {
+                NavigationLink(destination: ProductDetailView(product: product)) {
+                    Capsule()
+                        .fill(Color.gray).opacity(0.4)
+                        .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 50)
+                        .overlay(Text("취소하기")
+                        .font(.system(size: 20)).fontWeight(.medium)
+                        .foregroundColor(Color.black))
+                        .padding(.vertical, 8)
+                }
+            }
+            .buttonStyle(ShrinkButtonStyle())
+        }
+    }
+    
+    var nicknameField: some View {
+        VStack(alignment: .leading) {
+            Text("닉네임")
+            Text("별도로 입력하지 않으면 사용자 이름으로 나타납니다.")
+                .font(.footnote)
+                .foregroundColor(.gray)
+            TextField("  \(userinfo.user.username)",text: $nickname)
+                .multilineTextAlignment(.leading)
+                .frame(height: 30)
+                .background(RoundedRectangle(cornerRadius: 6).stroke())
+        }
+    }
+    
+    var messageField: some View {
+        VStack(alignment: .leading) {
+            Text("메세지")
+            TextEditor(text: $message)
+                .font(Font.title3)
+                .frame(height: 150)
+                .overlay(RoundedRectangle(cornerRadius: 6).stroke())
+                .overlay(
+                    Text("생일 축하 메세지를 남겨주세요~!")
+                        .padding(8)
+                        .foregroundColor(.gray)
+                        .opacity(message.isEmpty ? 0.7 : 0), alignment: .topLeading
+                    )
+                .padding(.bottom, 5)
+        }
+    }
+    
+    private func saveFundingDB() {
+            // 펀딩 금액 입력이 숫자인지 확인
+            if let funding = Int(amount) {
+                if funding > product.price - product.currentCollection {
+                    // 펀딩 금액이 남은 금액을 초과할 경우 처리
+                    print("Exceed the price")
+                } else {
+                    // 펀딩 금액이 적절한 경우
+                    viewModel.participateFunding(product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
+                    
+                    showingPopup.toggle()
+                    
+                    viewModel.didUpload.toggle()
+                    userinfo.updateData.toggle()
+                    
+                    print("DEBUG:: \(product.currentCollection) && update: \(viewModel.didUpload)")
+                }
+            } else {
+                // 펀딩 금액이 올바른 형식이 아닌 경우
+                print("Not correct Funding data type")
+            }
+        }
+    }
+
+    
+
 private extension ParticipateView {
     func calculateBirthdayDday(birthday: String) -> String {
         let dateFormatter = DateFormatter()
@@ -148,5 +258,8 @@ private extension ParticipateView {
 struct ParticipateView_Previews: PreviewProvider {
     static var previews: some View {
         ParticipateView(product: productSamples[0])
+            .environmentObject(UserInfo(userid: "testid"))
+            .environmentObject(ParticipateFundingViewModel())
+            .environmentObject(ProductsViewModel(uid: "testid"))
     }
 }

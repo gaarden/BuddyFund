@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class UserInfo: ObservableObject {
+    @Published var updateData = false
     @Published var user: User
     
     init(userid: String) {

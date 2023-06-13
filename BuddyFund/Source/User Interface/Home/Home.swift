@@ -43,5 +43,6 @@ struct Home_Previews: PreviewProvider {
         Preview(source:Home())
 //            .environmentObject(Present())
             .environmentObject(ProductsViewModel(uid: "testid"))
+//            .environmentObject(ParticipateFundingViewModel())
     }
 }

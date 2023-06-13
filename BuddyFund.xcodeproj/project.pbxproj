@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1D786C2A38DC6E00966781 /* FundingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1D786B2A38DC6E00966781 /* FundingService.swift */; };
+		1A1D786E2A38E35F00966781 /* ParticipateFundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1D786D2A38E35F00966781 /* ParticipateFundingViewModel.swift */; };
 		1A4538612A1E84FB0014D480 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4538602A1E84FB0014D480 /* ProductsViewModel.swift */; };
 		1A4538642A1E88020014D480 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1A4538632A1E88020014D480 /* Kingfisher */; };
 		1A47BE002A346CD8005CCDE2 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47BDFF2A346CD8005CCDE2 /* Preview.swift */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A1D786B2A38DC6E00966781 /* FundingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingService.swift; sourceTree = "<group>"; };
+		1A1D786D2A38E35F00966781 /* ParticipateFundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateFundingViewModel.swift; sourceTree = "<group>"; };
 		1A4538602A1E84FB0014D480 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		1A47BDFF2A346CD8005CCDE2 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		1A47BE012A347C77005CCDE2 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -106,12 +110,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A1D786A2A38DC2600966781 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1A1D786B2A38DC6E00966781 /* FundingService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		1A45385F2A1E84DE0014D480 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				1A4538602A1E84FB0014D480 /* ProductsViewModel.swift */,
 				1A47BE012A347C77005CCDE2 /* UserInfo.swift */,
 				1A50560C2A34FF9400825F64 /* ReviewInfo.swift */,
+				1A1D786D2A38E35F00966781 /* ParticipateFundingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -137,6 +150,7 @@
 			children = (
 				EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */,
 				F598B1622A034C3E005D20F7 /* Source */,
+				1A1D786A2A38DC2600966781 /* Service */,
 				F598B16A2A034C97005D20F7 /* Model */,
 				F598B16B2A034CA0005D20F7 /* Helper */,
 				F598B16C2A034CEC005D20F7 /* Resource */,
@@ -337,6 +351,7 @@
 				F598B1672A034C61005D20F7 /* SceneDelegate.swift in Sources */,
 				539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */,
 				53DBE4CD2A2CF08F00DF97E0 /* MainTabView.swift in Sources */,
+				1A1D786C2A38DC6E00966781 /* FundingService.swift in Sources */,
 				F5CD23C52A0672F4008A2171 /* ProgressBar.swift in Sources */,
 				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 				537D3CC92A1206E40000676B /* ParticipateView.swift in Sources */,
@@ -356,6 +371,7 @@
 				53471F552A0F5D4400E2E365 /* ProductDetailView.swift in Sources */,
 				533951922A2A2DA400EBC16C /* Popup.swift in Sources */,
 				1A47BE062A34A6BE005CCDE2 /* ShowImage.swift in Sources */,
+				1A1D786E2A38E35F00966781 /* ParticipateFundingViewModel.swift in Sources */,
 				533951902A2A2B3100EBC16C /* ShrinkButtonStyle.swift in Sources */,
 				1A50560D2A34FF9400825F64 /* ReviewInfo.swift in Sources */,
 				1A47BE022A347C77005CCDE2 /* UserInfo.swift in Sources */,
