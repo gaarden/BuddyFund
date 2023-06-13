@@ -1,5 +1,6 @@
 [
     {
+        "pid" : "sample1",
         "title" : "슬덩만화책을 사도될까요",
         "username" : "정다혜",
         "profileImage" : "user1",
@@ -12,6 +13,7 @@
         "account": "카카오 3333-00-0000-000"
     },
     {
+        "pid" : "sample2",
         "title" : "애플워치 원해요! 원해요!",
         "username" : "문정원",
         "profileImage" : "user2",
@@ -24,6 +26,7 @@
         "account": "카카오 3333-00-0000-000"
     },
     {
+        "pid" : "sample3",
         "title" : "백호는 농구대가 필요하다..",
         "username" : "강백호",
         "profileImage" : "user3",

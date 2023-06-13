@@ -143,7 +143,7 @@ private extension ProductDetailView{
             Text("참여내역")
             HStack{
                 Spacer()
-                Text("총 "+"변수"+"명이 참여하였습니다.")
+                Text("총 \(reviewInfo.reviews.count)명이 참여하였습니다.")
                 Spacer()
             }
         }
