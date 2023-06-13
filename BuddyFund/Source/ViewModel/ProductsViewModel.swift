@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class ProductsViewModel: ObservableObject {
+    @Published var updateData = false
     @Published var products = [Product]()
     @Published var friendsList: [String] = []
     static let db = Firestore.firestore()

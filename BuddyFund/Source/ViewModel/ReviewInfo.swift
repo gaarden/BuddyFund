@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class ReviewInfo: ObservableObject {
+    @Published var updateData = false
     @Published var reviews = [Review]()
     let pid: String
     

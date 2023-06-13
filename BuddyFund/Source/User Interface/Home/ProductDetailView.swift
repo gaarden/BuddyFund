@@ -11,7 +11,7 @@ import Kingfisher
 
 struct ProductDetailView: View {
     @EnvironmentObject private var reviewInfo : ReviewInfo
-    let product : Product
+    var product : Product
     var body: some View {
             descriptView
             .listStyle(.plain)
@@ -127,7 +127,9 @@ private extension ProductDetailView{
         ZStack {
           NavigationLink(
             destination: {
-                ParticipateView(product: product).navigationBarBackButtonHidden()
+                ParticipateView(product: product)
+                    .navigationBarBackButtonHidden()
+                    .environmentObject(ParticipateFundingViewModel())
             },
             label: {
               EmptyView()
