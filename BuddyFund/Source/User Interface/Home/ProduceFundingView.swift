@@ -19,7 +19,6 @@ struct ProduceFundingView: View {
     @State private var selectedImage: UIImage?
     @State private var isShowingImagePicker = false
     @State private var navigateToMypage = false
-    let product: Product
 
     var body: some View {
         NavigationView {
@@ -233,7 +232,7 @@ struct MultilineTextView: UIViewRepresentable {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProduceFundingView(product: productSamples[0])
+        ProduceFundingView()
     }
 }
 

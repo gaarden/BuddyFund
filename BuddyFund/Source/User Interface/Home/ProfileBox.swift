@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ProfileBox: View {
     let user : User
+    @State private var navigateToProduceFundingView = false
     
     var body: some View {
         VStack(spacing: 0){
@@ -126,34 +127,41 @@ private extension ProfileBox{
         return daysUntilBirthday
         
     }
-    func fundDayButton(num: Int)->some View {
-        
+    
+    func fundDayButton(num: Int) -> some View {
         if num >= 15 && num <= 362 {
-                return Button(
-                    action: {}
-                    ){Text("펀딩생성 D-\(num-14)")}
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .frame(width:310,height: 40)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(6)
-
-            } else {
-                return Button(
-                    action: {print("버튼")}
-                    ){Text("펀딩생성하기")}
-                    .font(.headline)
-                    .foregroundColor(.white)
-                        .frame(width:310,height: 40)
-                        .background(Color.blue.opacity(0.9))
-                        .cornerRadius(6)
-
-            }
-        
+            return AnyView(
+                Button(action: {}){
+                    Text("펀딩생성 D-\(num-14)")
+                }
+                .font(.headline)
+                .foregroundColor(.black)
+                .frame(width: 310, height: 40)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(6)
+            )
+        } else {
+            return AnyView(
+                NavigationLink(destination: ProduceFundingView().navigationBarBackButtonHidden(), isActive: $navigateToProduceFundingView) {
+                    Button(action: {
+                        navigateToProduceFundingView = true
+                    }) {
+                        Text("펀딩생성하기")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 310, height: 40)
+                            .background(Color.blue.opacity(0.9))
+                            .cornerRadius(6)
+                    }
+                }
+            )
+        }
     }
+
 }
 struct MypageBox_Previews: PreviewProvider {
     static var previews: some View {
         ProfileBox(user: userSample)
     }
 }
+
