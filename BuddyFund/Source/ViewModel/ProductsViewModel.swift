@@ -92,6 +92,7 @@ class ProductsViewModel: ObservableObject {
                             
                             // 펀딩 생성자 정보 가져오기
                             if let writerRef = data["writerId"] as? String {
+                                let createrId = writerRef
                                 ProductsViewModel.db.collection("users").document(writerRef).getDocument { userSnapshot, userError in
                                     if let userError = userError {
                                         print("Error fetching referenced document: \(userError)")
@@ -108,7 +109,7 @@ class ProductsViewModel: ObservableObject {
                                             
                                             let bday = userData["birthday"] as? String ?? ""
                                             
-                                            let product = Product(pid:pid, title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account)
+                                            let product = Product(pid:pid, title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account, createrId: createrId)
                                             
                                             self.products.append(product)
                                             

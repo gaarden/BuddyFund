@@ -8,9 +8,12 @@
 
 import SwiftUI
 import Kingfisher
+import Firebase
 
 struct ProductDetailView: View {
     @EnvironmentObject private var reviewInfo : ReviewInfo
+    @EnvironmentObject var userinfo: UserInfo
+    @State var showFundDesct = false
     var product : Product
     var body: some View {
             descriptView
@@ -138,28 +141,74 @@ private extension ProductDetailView{
           .opacity(0)
             
           Capsule()
-                    .stroke(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
-                    .overlay(Text("펀딩하기")
-                    .font(.system(size: 20)).fontWeight(.medium)
-                    .foregroundColor(Color.black))
-                    .padding(.vertical, 8)
+            .stroke(Color.black)
+            .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
+            .overlay(Text("펀딩하기")
+            .font(.system(size: 20)).fontWeight(.medium)
+            .foregroundColor(Color.black))
+            .padding(.vertical, 8)
         }
     }
+    
     var fundinglist: some View {
-        VStack(alignment: .leading){
-            Text("참여내역")
-            HStack{
-                Spacer()
+        HStack {
+            VStack(alignment: .leading) {
+                Text("참여내역")
+                    .fontWeight(.bold)
+                    .font(.headline)
+                    
                 Text("총 \(reviewInfo.reviews.count)명이 참여하였습니다.")
-                Spacer()
+            }
+            
+            Spacer()
+            
+            // 사용자가 생성한 펀딩의 경우 참여 내역 상세보기 가능
+            if userinfo.user.uid == product.createrId {
+//            if true {
+                fundinglistDetail
             }
         }
     }
+    
+    var fundinglistDetail: some View {
+        Button {
+            showFundDesct.toggle()
+        } label: {
+            Rectangle()
+                .fill(.indigo)
+                .frame(maxWidth: 130, maxHeight: 30)
+                .cornerRadius(30)
+                .overlay(Text("참여내역 상세보기")
+                    .font(.footnote)
+                    .foregroundColor(.white)
+                             )
+        }
+        .sheet(isPresented: $showFundDesct) {
+            ParticipateDescriptionView()
+        }
+
+//        ZStack {
+//            Rectangle()
+//                .fill(.indigo)
+//                .frame(maxWidth: 130, maxHeight: 30)
+//                .cornerRadius(30)
+//            Text("참여내역 상세보기")
+//                .font(.footnote)
+//                .foregroundColor(.white)
+//            NavigationLink(destination: ParticipateDescriptionView(showFundDesct: $showFundDesct)) {
+//                EmptyView()
+//            }
+//            .opacity(0)
+//        }
+    }
+    
 }
+
+
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailView(product: productSamples[0])
             .environmentObject(ReviewInfo(pid: "RK0jXlcAcvM0EUQf93Hj"))
+            .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }

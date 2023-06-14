@@ -1,15 +1,14 @@
 //
-//  UserInfo.swift
+//  ParticipantsDetailViewModel.swift
 //  BuddyFund
 //
-//  Created by minyeong on 2023/06/10.
+//  Created by minyeong on 2023/06/15.
 //
 
 import Foundation
 import Firebase
 
-class UserInfo: ObservableObject {
-    @Published var updateData = false
+class ParticipantsDetailViewModel: ObservableObject {
     @Published var user: User
     
     init(userid: String) {
