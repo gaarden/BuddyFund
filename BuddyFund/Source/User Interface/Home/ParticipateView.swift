@@ -170,7 +170,7 @@ struct ParticipateView: View {
                     print("Exceed the price")
                 } else {
                     // 펀딩 금액이 적절한 경우
-                    viewModel.participateFunding(product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
+                    viewModel.participateFunding(uid:userinfo.user.uid, product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
                     
                     showingPopup.toggle()
                     
@@ -258,8 +258,8 @@ private extension ParticipateView {
 struct ParticipateView_Previews: PreviewProvider {
     static var previews: some View {
         ParticipateView(product: productSamples[0])
-            .environmentObject(UserInfo(userid: "testid"))
+            .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
             .environmentObject(ParticipateFundingViewModel())
-            .environmentObject(ProductsViewModel(uid: "testid"))
+            .environmentObject(ProductsViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }

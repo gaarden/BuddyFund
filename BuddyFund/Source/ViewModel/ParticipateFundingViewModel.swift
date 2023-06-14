@@ -16,10 +16,10 @@ class ParticipateFundingViewModel: ObservableObject {
 //        self.product = product
 //    }
     
-    func participateFunding(product: Product, user: String, nickname: String, funding: Int, comment: String) {
+    func participateFunding(uid:String, product: Product, user: String, nickname: String, funding: Int, comment: String) {
         
         //        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let uid = "testid"
+        let uid = uid // 현재 로그인한 사용자 doc id
         
         let fundingdata: [String: Any] = [
             "user": user,
@@ -49,17 +49,6 @@ class ParticipateFundingViewModel: ObservableObject {
             "participantsId": refData.documentID,
             "productId": product.pid
         ]
-        Firestore.firestore().collection("users").whereField("uid", isEqualTo: uid).getDocuments { snapshot, error in
-            if let error = error {
-                print("Error fetching user docaument: \(error)")
-                return
-            }
-            guard let document = snapshot?.documents.first else { // userid에 해당하는 첫번째 데이터만 가져오기
-                print("User document not found")
-                return
-            }
-            let userId = document.documentID
-            Firestore.firestore().collection("users").document(userId).collection("participateFundings").document().setData(fundinglistdata)
-        }
+        Firestore.firestore().collection("users").document(uid).collection("participateFundings").document().setData(fundinglistdata)
     }
 }

@@ -42,7 +42,7 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Preview(source:Home())
 //            .environmentObject(Present())
-            .environmentObject(ProductsViewModel(uid: "testid"))
+            .environmentObject(ProductsViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
 //            .environmentObject(ParticipateFundingViewModel())
     }
 }
