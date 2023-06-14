@@ -32,7 +32,7 @@ class ReviewInfo: ObservableObject {
     func fetchReivews(product: String) { // product 의 펀딩에 참여한 리스트
         let db = Firestore.firestore()
         
-        db.collection("products").document(product).collection("participants").getDocuments {snapshot, error in
+        db.collection("products").document(product).collection("participants").order(by: "date", descending: true).getDocuments {snapshot, error in
             if let error = error {
                 print("Error fetching user docaument: \(error)")
                 return

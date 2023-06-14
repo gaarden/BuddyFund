@@ -12,6 +12,7 @@ class ProductsViewModel: ObservableObject {
     @Published var updateData = false
     @Published var products = [Product]()
     @Published var friendsList: [String] = []
+    @Published var favoriteProd: [String] = []
     static let db = Firestore.firestore()
     let uid: String
     
@@ -22,8 +23,27 @@ class ProductsViewModel: ObservableObject {
     }
     
     func fetchProducts(uid: String) { // 친구 목록 가져오기
+        let UserRef = ProductsViewModel.db.collection("users").document(uid)
         
-        ProductsViewModel.db.collection("users").document(uid).collection("friends").getDocuments {snapshot, error in
+        // 즐겨찾기 목록
+        UserRef.collection("favorites").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching friends collection: \(error)")
+                return
+            }
+            
+            for document in snapshot?.documents ?? [] {
+                let favoriteData = document.data()
+                if let favoriteId = favoriteData["product"] as? String {
+//                        print("friend: \(friendId)")
+                    self.friendsList.append(favoriteId)
+                } else {
+                    print("no favorite")
+                }
+            }
+        }
+        
+        UserRef.collection("friends").getDocuments {snapshot, error in
             if let error = error {
                 print("Error fetching friends collection: \(error)")
                 return
@@ -87,7 +107,7 @@ class ProductsViewModel: ObservableObject {
                             let description = data["description"] as? String ?? ""
                             let price = data["price"] as? Int ?? 0
                             let currentCollection = data["currentFund"] as? Int ?? 0
-                            let isFavorite = data["isFavortie"] as? Bool ?? false //별도 수정 필요
+                            let isFavorite = self.favoriteProd.contains(pid) //별도 수정 필요
                             let account = data["account"] as? String ?? ""
                             
                             // 펀딩 생성자 정보 가져오기

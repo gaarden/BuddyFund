@@ -30,7 +30,7 @@ private extension ProductDetailView{
             .frame(maxWidth: .infinity)
     }
     var descriptView : some View {
-        GeometryReader{ g in
+        return GeometryReader{ g in
             NavigationView{
                 List{
                     productImage

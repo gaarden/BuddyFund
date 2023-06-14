@@ -12,7 +12,11 @@ struct Home: View {
     @EnvironmentObject private var productsInfo : ProductsViewModel
     
     var body: some View {
-        let orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
+        var orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
+        // 즐겨찾기...
+//        let favorites = productsInfo.favoriteProd
+//        isfavoriteProc(products: &orderproducts, isfavorites: favorites)
+        print(orderproducts)
         return NavigationView {
             List(orderproducts){ product in // DB 연결
 //            List(present.products){ product in
@@ -79,6 +83,14 @@ struct Home: View {
         let daysUntilBirthday = components.day!
         
         return daysUntilBirthday
+    }
+    
+    func isfavoriteProc(products: inout [Product], isfavorites:[String]) {
+        for index in products.indices {
+            if isfavorites.contains(products[index].pid) {
+                products[index].isFavorite = true
+            }
+        }
     }
 }
 
