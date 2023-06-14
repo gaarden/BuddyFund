@@ -99,7 +99,13 @@ class ProductsViewModel: ObservableObject {
                                         if let userData = userSnapshot?.data() {
         //                                    print(userData)
                                             let username = userData["name"] as? String ?? ""
-                                            let profileImage = userData["profileUrl"] as? String ?? ""
+                                            var profileImage = userData["profileUrl"] as? String ?? ""
+                                            
+                                            // 프로필 없으면 기본 이미지 가져오기
+                                            if profileImage == "" {
+                                                profileImage = "https://firebasestorage.googleapis.com/v0/b/buddyfund-fd57d.appspot.com/o/profiles%2Fdefault.png?alt=media&token=498cde06-7351-42b1-9ac3-da89004ea93c"
+                                            }
+                                            
                                             let bday = userData["birthday"] as? String ?? ""
                                             
                                             let product = Product(pid:pid, title: title, username: username, profileImage: profileImage, itemImage: itemImage, bday: bday, description: description, price: price, currentCollection: currentCollection, isFavorite: isFavorite, account: account)
