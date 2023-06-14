@@ -23,42 +23,47 @@ class ProductsViewModel: ObservableObject {
     
     func fetchProducts(uid: String) { // 친구 목록 가져오기
         
-        ProductsViewModel.db.collection("users").whereField("uid", isEqualTo: uid).getDocuments {snapshot, error in
+        ProductsViewModel.db.collection("users").document(uid).collection("friends").getDocuments {snapshot, error in
             if let error = error {
-                print("Error fetching user docaument: \(error)")
+                print("Error fetching friends collection: \(error)")
                 return
             }
             
-            guard let document = snapshot?.documents.first else { // userid에 해당하는 첫번째 데이터만 가져오기
-                print("User document not found")
-                return
+            for document in snapshot?.documents ?? [] {
+                let friendData = document.data()
+                if let friendId = friendData["user"] as? String {
+//                        print("friend: \(friendId)")
+                    self.friendsList.append(friendId)
+                } else {
+                    print("no friends")
+                }
             }
             
-            let userId = document.documentID
+//            let userId = document.documentID
 //            print("user Id: \(userId)")
             
-            let friendsCollectionRef = ProductsViewModel.db.collection("users").document(userId).collection("friends")
+//            let friendsCollectionRef = ProductsViewModel.db.collection("users").document(userId).collection("friends")
             
-            friendsCollectionRef.getDocuments { snapshot, error in
-                if let error = error {
-                    print("Error fetching friends collection: \(error)")
-                    return
-                }
+//            friendsCollectionRef.getDocuments { snapshot, error in
+//                if let error = error {
+//                    print("Error fetching friends collection: \(error)")
+//                    return
+//                }
                 
-                for document in snapshot?.documents ?? [] {
-                    let friendData = document.data()
-                    if let friendId = friendData["user"] as? String {
-//                        print("friend: \(friendId)")
-                        self.friendsList.append(friendId)
-                    } else {
-                        print("no friends")
-                    }
-                }
+//                for document in snapshot?.documents ?? [] {
+//                    let friendData = document.data()
+//                    if let friendId = friendData["user"] as? String {
+////                        print("friend: \(friendId)")
+//                        self.friendsList.append(friendId)
+//                    } else {
+//                        print("no friends")
+//                    }
+//                }
                 
                 if self.friendsList.isEmpty {
                     print("friendsList Empty")
                 } else {
-                    print(self.friendsList) // 쿼리 완료 이후에 friendsList 출력
+                    print("Total User(\(uid)) firends (self.friendsList.count)") // 쿼리 완료 이후에 friendsList 출력
                     
                     ProductsViewModel.db.collection("products").whereField("writerId", in: self.friendsList).getDocuments { snapshot, error in
                         if let error = error {
@@ -114,7 +119,7 @@ class ProductsViewModel: ObservableObject {
                         }
                     }
                 }
-            }
+//            }
         }
     }
 }

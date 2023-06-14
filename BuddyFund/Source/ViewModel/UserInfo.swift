@@ -15,31 +15,44 @@ class UserInfo: ObservableObject {
     init(userid: String) {
         print("DEBUG:: Get user data from DB")
         self.user = User(uid:"", username: "", profileImage: "", bday: "")
-        fetchUser(userid: userid)
+        fetchUser(uid: userid)
     }
     
-    func fetchUser(userid: String) {
+    func fetchUser(uid: String) {
         let db = Firestore.firestore() // Firestore 인스턴스 생성
         
-        db.collection("users").whereField("uid", isEqualTo: userid).getDocuments { (snapshot, error) in
+        let userRf = db.collection("users").document(uid)
+        userRf.getDocument { (document, error) in
             if let error = error {
-                print("Error fetching user docaument: \(error)")
+                print("Error fetching user document: \(error)")
                 return
+            } else if let document = document, document.exists {
+                if let userData = document.data() {
+                    let userid = uid
+                    let username = userData["name"] as? String ?? ""
+                    let profileImage = userData["profileUrl"] as? String ?? ""
+                    let bday = userData["birthday"] as? String ?? ""
+                    
+                    self.user = User(uid: userid, username: username, profileImage: profileImage, bday: bday)
+                }
+                
+            } else {
+                print("Document dose not exit")
             }
             
-            guard let document = snapshot?.documents.first else { // userid에 해당하는 첫번째 데이터만 가져오기
-                print("User document not found")
-                return
-            }
-            
-            let userData = document.data()
-            
-            let userid = document.documentID
-            let username = userData["name"] as? String ?? ""
-            let profileImage = userData["profileUrl"] as? String ?? ""
-            let bday = userData["birthday"] as? String ?? ""
-            
-            self.user = User(uid: userid, username: username, profileImage: profileImage, bday: bday)
+//            guard let document = snapshot?.documents.first else { // userid에 해당하는 첫번째 데이터만 가져오기
+//                print("User document not found")
+//                return
+//            }
+//
+//            let userData = document.data()
+//
+//            let userid = document.documentID
+//            let username = userData["name"] as? String ?? ""
+//            let profileImage = userData["profileUrl"] as? String ?? ""
+//            let bday = userData["birthday"] as? String ?? ""
+//
+//            self.user = User(uid: userid, username: username, profileImage: profileImage, bday: bday)
         }
     }
 }
