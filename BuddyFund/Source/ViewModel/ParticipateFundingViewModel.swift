@@ -16,13 +16,13 @@ class ParticipateFundingViewModel: ObservableObject {
 //        self.product = product
 //    }
     
-    func participateFunding(uid:String, product: Product, user: String, nickname: String, funding: Int, comment: String) {
+    func participateFunding(uid:String, product: Product, nickname: String, funding: Int, comment: String) {
         
         //        guard let uid = Auth.auth().currentUser?.uid else {return}
         let uid = uid // 현재 로그인한 사용자 doc id
         
         let fundingdata: [String: Any] = [
-            "user": user,
+            "user": uid,
             "nickname": nickname,
             "funding": funding,
             "date": Timestamp(date: Date()),
