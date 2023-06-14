@@ -13,6 +13,7 @@ struct ParticipateView: View {
     @State var amount: String = ""
     @State private var showingAlert = false
     @State private var showingPopup = false
+    @State private var showNotice = false
     @State private var nickname = ""
     @State var message: String = ""
     @EnvironmentObject var userinfo: UserInfo
@@ -37,9 +38,10 @@ struct ParticipateView: View {
                     .padding(.bottom, 15)
                 
                 nicknameField
+                    .padding(.bottom)
                 
                 messageField
-                
+                    
                 fundingCancelButton
                 Spacer()
             }
@@ -101,19 +103,27 @@ struct ParticipateView: View {
             }
             .buttonStyle(ShrinkButtonStyle())
             .alert(isPresented: $showingAlert) {
-                Alert(title: Text("금액 확인"),
-                      message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
-                      primaryButton: .default(
-                        Text("펀딩하기"),
-                        action: {
-                            saveFundingDB()
-                            amount = ""
-                            nickname = "\(userinfo.user.username)"
-                            message = ""
-//                            showingPopup.toggle()
-                        }),
-                      secondaryButton: .cancel(Text("취소")))
+                if showNotice {
+                    return Alert(title: Text("잘못된 입력값입니다."),
+                          message: Text("닉네임을 입력해주세요.")
+                                 )
+                } else {
+                    return Alert(title: Text("금액 확인"),
+                          message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
+                          primaryButton: .default(
+                            Text("펀딩하기"),
+                            action: {
+                                saveFundingDB()
+                                amount = ""
+                                nickname = ""
+                                message = ""
+                                showingPopup.toggle()
+                            }),
+                          secondaryButton: .cancel(Text("취소")))
+                }
+                
             }
+             
             // 취소버튼
             Button(action: {
                 print("Cancle Funding")
@@ -135,13 +145,13 @@ struct ParticipateView: View {
     var nicknameField: some View {
         VStack(alignment: .leading) {
             Text("닉네임")
-            Text("별도로 입력하지 않으면 사용자 이름으로 나타납니다.")
-                .font(.footnote)
-                .foregroundColor(.gray)
             TextField("  \(userinfo.user.username)",text: $nickname)
                 .multilineTextAlignment(.leading)
                 .frame(height: 30)
                 .background(RoundedRectangle(cornerRadius: 6).stroke())
+            Text("별도로 입력하지 않으면 사용자 이름으로 나타납니다.")
+                .font(.footnote)
+                .foregroundColor(.gray)
         }
     }
     
@@ -170,14 +180,19 @@ struct ParticipateView: View {
                     print("Exceed the price")
                 } else {
                     // 펀딩 금액이 적절한 경우
+                    if nickname == "" {
+                        nickname = userinfo.user.username
+                    }
+                    
                     viewModel.participateFunding(uid:userinfo.user.uid, product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
                     
-                    showingPopup.toggle()
+//                    showingPopup.toggle()
                     
                     viewModel.didUpload.toggle()
                     userinfo.updateData.toggle()
                     
                     print("DEBUG:: \(product.currentCollection) && update: \(viewModel.didUpload)")
+                    
                 }
             } else {
                 // 펀딩 금액이 올바른 형식이 아닌 경우
