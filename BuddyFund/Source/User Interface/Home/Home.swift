@@ -88,6 +88,8 @@ struct Home: View {
         for index in products.indices {
             if isfavorites.contains(products[index].pid) {
                 products[index].isFavorite = true
+                let item = products.remove(at: index)
+                products.insert(item, at: 0)
             }
         }
     }
