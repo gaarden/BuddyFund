@@ -63,9 +63,9 @@ class ProductsViewModel: ObservableObject {
                 if self.friendsList.isEmpty {
                     print("friendsList Empty")
                 } else {
-                    print("Total User(\(uid)) firends (self.friendsList.count)") // 쿼리 완료 이후에 friendsList 출력
+                    print("Total User(\(uid)) firends \(self.friendsList.count)") // 쿼리 완료 이후에 friendsList 출력
                     
-                    ProductsViewModel.db.collection("products").whereField("writerId", in: self.friendsList).getDocuments { snapshot, error in
+                    ProductsViewModel.db.collection("products").whereField("writerId", in: self.friendsList).order(by: "date").getDocuments { snapshot, error in
                         if let error = error {
                             print("Error fetching documents: \(error)")
                             return

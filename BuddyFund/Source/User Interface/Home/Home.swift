@@ -12,8 +12,9 @@ struct Home: View {
     @EnvironmentObject private var productsInfo : ProductsViewModel
     
     var body: some View {
-        NavigationView {
-            List(productsInfo.products){ product in // DB 연결
+        let orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
+        return NavigationView {
+            List(orderproducts){ product in // DB 연결
 //            List(present.products){ product in
                 ZStack {
                   NavigationLink(
@@ -35,6 +36,49 @@ struct Home: View {
               .listStyle(PlainListStyle())
               .navigationTitle("진행중인 펀딩")
             }
+    }
+    
+    func calculateBirthdayDday(birthday: String) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMdd"
+        
+        // 현재 날짜
+        let currentDate = Date()
+        var currentDateString = dateFormatter.string(from: currentDate)
+
+        // 올해의 생일
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        
+        // 생일이 지난 경우 내년 생일로 계산
+        var nextBirthdayDateString = "\(currentYear)\(birthday)"
+        dateFormatter.dateFormat = "YYYYMMdd"
+        if let nextBirthdayDate = dateFormatter.date(from: nextBirthdayDateString){
+            dateFormatter.dateFormat = "YYYYMMdd"
+            currentDateString = dateFormatter.string(from: currentDate)
+            nextBirthdayDateString = dateFormatter.string(from: nextBirthdayDate)
+
+            if nextBirthdayDateString < currentDateString {
+            nextBirthdayDateString = "\(currentYear + 1)\(birthday)"
+        }
+            else if nextBirthdayDateString == currentDateString {
+                return 0
+            }
+        }
+        dateFormatter.dateFormat = "YYYYMMdd"
+        // 날짜 계산
+        let calendar = Calendar.current
+        let birthdayDate = dateFormatter.date(from: nextBirthdayDateString)!
+        let components = calendar.dateComponents([.day], from: currentDate, to: birthdayDate)
+        dateFormatter.dateFormat = "YYYY"
+        let c = nextBirthdayDateString.index(nextBirthdayDateString.startIndex,offsetBy: 3)
+        if (Int(nextBirthdayDateString[nextBirthdayDateString.startIndex...c]) == currentYear)
+        {
+            let daysUntilBirthday = components.day!+1
+            return daysUntilBirthday
+        }
+        let daysUntilBirthday = components.day!
+        
+        return daysUntilBirthday
     }
 }
 
