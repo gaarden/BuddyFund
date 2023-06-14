@@ -10,12 +10,11 @@ import SwiftUI
 struct Home: View {
 //    @EnvironmentObject private var present : Present
     @EnvironmentObject private var productsInfo : ProductsViewModel
+    @EnvironmentObject private var user: UserInfo
     
     var body: some View {
         var orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
-        // 즐겨찾기...
-//        let favorites = productsInfo.favoriteProd
-//        isfavoriteProc(products: &orderproducts, isfavorites: favorites)
+        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
         print(orderproducts)
         return NavigationView {
             List(orderproducts){ product in // DB 연결
@@ -99,6 +98,7 @@ struct Home_Previews: PreviewProvider {
         Preview(source:Home())
 //            .environmentObject(Present())
             .environmentObject(ProductsViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+            .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
 //            .environmentObject(ParticipateFundingViewModel())
     }
 }

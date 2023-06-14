@@ -11,13 +11,68 @@ import Firebase
 class UserInfo: ObservableObject {
     @Published var updateData = false
     @Published var user: User
+//    @Published var friendsList: [String] = []
+    @Published var favoriteProd: [String] = []
     
     init(userid: String) {
         print("DEBUG:: Get user data from DB")
         self.user = User(uid:"", username: "", profileImage: "", bday: "")
+//        self.friendsList = pullFreinds(uid: userid)
+        pullFavorites(uid: userid)
         fetchUser(uid: userid)
     }
     
+    func pullFavorites(uid: String)->() {
+        var favorites: [String] = []
+        let UserRef = ProductsViewModel.db.collection("users").document(uid)
+        
+        UserRef.collection("favorites").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching favorites collection: \(error)")
+                return
+            }
+            
+            for document in snapshot?.documents ?? [] {
+                let favoriteData = document.data()
+                if let favoriteId = favoriteData["product"] as? String {
+//                        print("friend: \(friendId)")
+                    self.favoriteProd.append(favoriteId)
+                } else {
+                    print("no favorite")
+                }
+            }
+        }
+        
+        print("favorites: \(favorites)")
+//        return favorites
+//        self.friendsList  = favorites
+    }
+    /*
+    func pullFreinds(uid: String)->[String] {
+        var friends : [String] = []
+        let UserRef = ProductsViewModel.db.collection("users").document(uid)
+        
+        UserRef.collection("friends").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching friends collection: \(error)")
+                return
+            }
+            
+            for document in snapshot?.documents ?? [] {
+                let friendData = document.data()
+                if let friendId = friendData["product"] as? String {
+//                        print("friend: \(friendId)")
+                    friends.append(friendId)
+                } else {
+                    print("no favorite")
+                }
+            }
+        }
+        
+        print("friends: \(friends)")
+        return friends
+    }
+    */
     func fetchUser(uid: String) {
         let db = Firestore.firestore() // Firestore 인스턴스 생성
         

@@ -58,27 +58,6 @@ class ProductsViewModel: ObservableObject {
                     print("no friends")
                 }
             }
-            
-//            let userId = document.documentID
-//            print("user Id: \(userId)")
-            
-//            let friendsCollectionRef = ProductsViewModel.db.collection("users").document(userId).collection("friends")
-            
-//            friendsCollectionRef.getDocuments { snapshot, error in
-//                if let error = error {
-//                    print("Error fetching friends collection: \(error)")
-//                    return
-//                }
-                
-//                for document in snapshot?.documents ?? [] {
-//                    let friendData = document.data()
-//                    if let friendId = friendData["user"] as? String {
-////                        print("friend: \(friendId)")
-//                        self.friendsList.append(friendId)
-//                    } else {
-//                        print("no friends")
-//                    }
-//                }
                 
                 if self.friendsList.isEmpty {
                     print("friendsList Empty")
