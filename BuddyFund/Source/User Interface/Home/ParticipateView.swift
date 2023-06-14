@@ -10,6 +10,7 @@ import Firebase
 
 struct ParticipateView: View {
     var product : Product
+    @State var notice : String = ""
     @State var amount: String = ""
     @State private var showingAlert = false
     @State private var showingPopup = false
@@ -80,6 +81,12 @@ struct ParticipateView: View {
                 .font(.title)
                 .frame(height: 50)
                 .background(RoundedRectangle(cornerRadius: 6).stroke())
+            if showNotice {
+                Text("금액을 확인해 주세요.")
+                    .font(.footnote)
+                    .foregroundColor(.red)
+                    .padding(.bottom, 2)
+            }
             Text("입력된 금액 : "+stringNumberComma(number:amount))
                 .font(.title2)
         }
@@ -89,9 +96,10 @@ struct ParticipateView: View {
     var fundingCancelButton: some View {
         HStack {
             Button(action: {
-                if stringNumberComma(number: amount) != "" {
+//                if stringNumberComma(number: amount) != "_" {
+                    stringNumberComma(number: amount)
                     self.showingAlert.toggle()
-                }
+//                }
             }) {
                 Capsule()
                     .fill(Color.indigo).opacity(0.4)
@@ -104,23 +112,20 @@ struct ParticipateView: View {
             .buttonStyle(ShrinkButtonStyle())
             .alert(isPresented: $showingAlert) {
                 if showNotice {
-                    return Alert(title: Text("잘못된 입력값입니다."),
-                          message: Text("닉네임을 입력해주세요.")
-                                 )
+                    //
+                    return Alert(title: Text("금액 확인"),
+                                 message: Text("\(notice)"))
                 } else {
                     return Alert(title: Text("금액 확인"),
-                          message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
-                          primaryButton: .default(
-                            Text("펀딩하기"),
-                            action: {
-                                saveFundingDB()
-                                amount = ""
-                                nickname = ""
-                                message = ""
-                                showingPopup.toggle()
-                            }),
-                          secondaryButton: .cancel(Text("취소")))
+                                 message: Text("\(product.username)님께 \(stringNumberComma(number:amount))원을 펀딩하시겠습니까?\n펀딩메세지:\(message)"),
+                                 primaryButton: .default(
+                                   Text("펀딩하기"),
+                                   action: {
+                                       saveFundingDB()
+                                   }),
+                                 secondaryButton: .cancel(Text("취소")))
                 }
+                
                 
             }
              
@@ -128,7 +133,7 @@ struct ParticipateView: View {
             Button(action: {
                 print("Cancle Funding")
             }) {
-                NavigationLink(destination: ProductDetailView(product: product)) {
+                NavigationLink(destination: ProductDetailView(product: product).navigationBarBackButtonHidden()) {
                     Capsule()
                         .fill(Color.gray).opacity(0.4)
                         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 50)
@@ -177,7 +182,9 @@ struct ParticipateView: View {
             if let funding = Int(amount) {
                 if funding > product.price - product.currentCollection {
                     // 펀딩 금액이 남은 금액을 초과할 경우 처리
-                    print("Exceed the price")
+                    print("Funding Error: Exceed the price")
+                } else if funding < 0 {
+                    print("Funding Error: The price is Minus")
                 } else {
                     // 펀딩 금액이 적절한 경우
                     if nickname == "" {
@@ -186,7 +193,7 @@ struct ParticipateView: View {
                     
                     viewModel.participateFunding(uid:userinfo.user.uid, product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
                     
-//                    showingPopup.toggle()
+                    showingPopup.toggle()
                     
                     viewModel.didUpload.toggle()
                     userinfo.updateData.toggle()
@@ -196,6 +203,7 @@ struct ParticipateView: View {
                 }
             } else {
                 // 펀딩 금액이 올바른 형식이 아닌 경우
+                showNotice = true
                 print("Not correct Funding data type")
             }
         }
@@ -252,7 +260,9 @@ private extension ParticipateView {
         var result = ""
         if let convertedNumber = temp {
             if convertedNumber<0 {
-                return "0보다 큰 값을 입력하세요."
+                showNotice = true
+                notice = "0보다 큰 값을 입력하세요."
+                return "_"
             }
             tempString = String(convertedNumber)
             var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
@@ -265,8 +275,24 @@ private extension ParticipateView {
                 sIndex = eIndex
                 eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
             }
+            
+            if convertedNumber + product.currentCollection > product.price {
+                showNotice = true
+                notice = "펀딩 가능한 금액을 초과했습니다."
+            } else if convertedNumber + product.currentCollection == product.price {
+                showNotice = false
+                notice = "펀딩 금액을 모두 채웠습니다!"
+            } else {
+                showNotice = false
+                notice = ""
+            }
+            return result
+        } else {
+            showNotice = true
+            notice = "올바른 형식으로 입력하세요"
+            return "_"
         }
-        return result
+//        return result
     }
 }
 
