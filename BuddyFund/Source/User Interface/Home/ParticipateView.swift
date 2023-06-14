@@ -191,7 +191,7 @@ struct ParticipateView: View {
                         nickname = userinfo.user.username
                     }
                     
-                    viewModel.participateFunding(uid:userinfo.user.uid, product: product, user: userinfo.user.username, nickname: nickname, funding: funding, comment: message)
+                    viewModel.participateFunding(uid:userinfo.user.uid, product: product, nickname: nickname, funding: funding, comment: message)
                     
                     showingPopup.toggle()
                     
@@ -203,11 +203,51 @@ struct ParticipateView: View {
                 }
             } else {
                 // 펀딩 금액이 올바른 형식이 아닌 경우
-                showNotice = true
                 print("Not correct Funding data type")
             }
         }
+    
+    func stringNumberComma(number: String)->String{
+        let temp = Int(number)
+        var tempString = ""
+        var result = ""
+        if let convertedNumber = temp {
+            if convertedNumber<0 {
+                showNotice = true
+                notice = "0보다 큰 값을 입력하세요."
+                return "_"
+            }
+            tempString = String(convertedNumber)
+            var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
+            var eIndex = tempString.index(tempString.startIndex,offsetBy: 1)
+            for i in 0..<tempString.count{
+                result += tempString[sIndex..<eIndex]
+                if ((tempString.count-1-i) % 3 == 0)&&(tempString.count-1 != i){
+                    result+=","
+                }
+                sIndex = eIndex
+                eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
+            }
+            
+            if convertedNumber + product.currentCollection > product.price {
+                showNotice = true
+                notice = "펀딩 가능한 금액을 초과했습니다."
+            } else if convertedNumber + product.currentCollection == product.price {
+                showNotice = false
+                notice = "펀딩 금액을 모두 채웠습니다!"
+            } else {
+                showNotice = false
+                notice = ""
+            }
+            return result
+        } else {
+            showNotice = true
+            notice = "올바른 형식으로 입력하세요"
+            return "_"
+        }
+//        return result
     }
+}
 
     
 
@@ -254,46 +294,8 @@ private extension ParticipateView {
         
         return "D-\(daysUntilBirthday)"
     }
-    func stringNumberComma(number: String)->String{
-        let temp = Int(number)
-        var tempString = ""
-        var result = ""
-        if let convertedNumber = temp {
-            if convertedNumber<0 {
-                showNotice = true
-                notice = "0보다 큰 값을 입력하세요."
-                return "_"
-            }
-            tempString = String(convertedNumber)
-            var sIndex = tempString.index(tempString.startIndex,offsetBy: 0)
-            var eIndex = tempString.index(tempString.startIndex,offsetBy: 1)
-            for i in 0..<tempString.count{
-                result += tempString[sIndex..<eIndex]
-                if ((tempString.count-1-i) % 3 == 0)&&(tempString.count-1 != i){
-                    result+=","
-                }
-                sIndex = eIndex
-                eIndex = tempString.index(sIndex,offsetBy: 1,limitedBy: tempString.endIndex) ?? sIndex
-            }
-            
-            if convertedNumber + product.currentCollection > product.price {
-                showNotice = true
-                notice = "펀딩 가능한 금액을 초과했습니다."
-            } else if convertedNumber + product.currentCollection == product.price {
-                showNotice = false
-                notice = "펀딩 금액을 모두 채웠습니다!"
-            } else {
-                showNotice = false
-                notice = ""
-            }
-            return result
-        } else {
-            showNotice = true
-            notice = "올바른 형식으로 입력하세요"
-            return "_"
-        }
-//        return result
-    }
+    
+
 }
 
 struct ParticipateView_Previews: PreviewProvider {
