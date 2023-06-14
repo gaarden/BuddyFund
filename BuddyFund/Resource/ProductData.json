@@ -10,7 +10,8 @@
         "price": 166500,
         "currentCollection": 12000,
         "isFavorite" : false,
-        "account": "카카오 3333-00-0000-000"
+        "account": "카카오 3333-00-0000-000",
+        "createrId": "정다혜"
     },
     {
         "pid" : "sample2",
@@ -23,7 +24,8 @@
         "price": 300000,
         "currentCollection": 90000,
         "isFavorite" : false,
-        "account": "카카오 3333-00-0000-000"
+        "account": "카카오 3333-00-0000-000",
+        "createrId": "문정원"
     },
     {
         "pid" : "sample3",
@@ -36,6 +38,7 @@
         "price": 1680000,
         "currentCollection": 1000000,
         "isFavorite" : false,
-        "account": "카카오 3333-00-0000-000"
+        "account": "카카오 3333-00-0000-000",
+        "createrId": "강백호"
     },
 ]

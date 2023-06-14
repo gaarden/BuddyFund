@@ -32,7 +32,7 @@ class ReviewInfo: ObservableObject {
     func fetchReivews(product: String) { // product 의 펀딩에 참여한 리스트
         let db = Firestore.firestore()
         
-        db.collection("products").document(product).collection("participants").getDocuments {snapshot, error in
+        db.collection("products").document(product).collection("participants").order(by: "date", descending: true).getDocuments {snapshot, error in
             if let error = error {
                 print("Error fetching user docaument: \(error)")
                 return
@@ -48,11 +48,15 @@ class ReviewInfo: ObservableObject {
             for document in documents {
                 let reviewData = document.data()
                 
+                let uid = reviewData["user"] as? String ?? ""
+                
                 let username = reviewData["nickname"] as? String ?? ""
                 let comment = reviewData["comment"] as? String ?? ""
                 let date = reviewData["date"] as? Timestamp ?? Timestamp()
                 let commentDate = self.convertTimestampToStr(timestamp: date)
-                let review = Review(username : username, comment: comment, commentDate: commentDate)
+                let funding = reviewData["funding"] as? Int ?? 0
+                let participantId = reviewData["user"] as? String ?? ""
+                let review = Review(username: username, comment: comment, commentDate: commentDate, funding: funding, uid: participantId)
                 self.reviews.append(review)
             }
         }
