@@ -32,7 +32,7 @@ struct Map_Watch_AppApp: App {
 //            Home().environmentObject(Present())
             MainTabView()
                 .environmentObject(Present())
-                .environmentObject(UserInfo(userid: "testid")) // 사용자 아이디 수정 필요
+                .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw")) // 사용자 아이디 수정 필요
 //                .environmentObject(ProductsViewModel(uid: "testid"))
 //            LoginView()
             
