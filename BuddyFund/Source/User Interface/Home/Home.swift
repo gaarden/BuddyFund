@@ -31,7 +31,7 @@ struct Home: View {
                   )
                   .opacity(0)
                   HStack {
-                      FundingProduct(product: product)
+                      FundingProduct(product:product)
                   }
                   
                 }

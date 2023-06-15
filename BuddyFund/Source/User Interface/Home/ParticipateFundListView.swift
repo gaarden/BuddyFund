@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ParticipateFundListView: View {
     var body: some View {
-        Text("참여한 펀딩")
+        FundingParticipate(product: productSamples[0])
     }
 }
 
+
+
 struct ParticipateFundListView_Previews: PreviewProvider {
     static var previews: some View {
-        ParticipateFundListView()
+        FundingParticipate(product: productSamples[1])
     }
 }

@@ -42,6 +42,8 @@
 		EF8B64952A1CB3A000E7AEC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */; };
 		EF8B64972A1CB70400E7AEC1 /* KakaoAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B64962A1CB70400E7AEC1 /* KakaoAuth.swift */; };
 		EF8B64992A1CB76F00E7AEC1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B64982A1CB76F00E7AEC1 /* LoginView.swift */; };
+		F55856442A3B348A00CC6CA8 /* FundingParticipate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55856432A3B348A00CC6CA8 /* FundingParticipate.swift */; };
+		F55856462A3B3A8B00CC6CA8 /* FundingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55856452A3B3A8B00CC6CA8 /* FundingProgress.swift */; };
 		F598B1572A034BAC005D20F7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598B1562A034BAC005D20F7 /* Home.swift */; };
 		F598B1592A034BAD005D20F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F598B1582A034BAD005D20F7 /* Assets.xcassets */; };
 		F598B15C2A034BAD005D20F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F598B15B2A034BAD005D20F7 /* Preview Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		EF5F78312A1374D9002E0651 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF8B64962A1CB70400E7AEC1 /* KakaoAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuth.swift; sourceTree = "<group>"; };
 		EF8B64982A1CB76F00E7AEC1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F55856432A3B348A00CC6CA8 /* FundingParticipate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingParticipate.swift; sourceTree = "<group>"; };
+		F55856452A3B3A8B00CC6CA8 /* FundingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingProgress.swift; sourceTree = "<group>"; };
 		F598B1512A034BAC005D20F7 /* BuddyFund.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyFund.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F598B1562A034BAC005D20F7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		F598B1582A034BAD005D20F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				533D5D4A2A2648B9005F520E /* FavoriteButton.swift */,
 				1A4C7BDB2A39FF0B006DA5E0 /* ParticipateDescriptionView.swift */,
 				1A4C7BDD2A3A0BDB006DA5E0 /* ParticipantReview.swift */,
+				F55856432A3B348A00CC6CA8 /* FundingParticipate.swift */,
+				F55856452A3B3A8B00CC6CA8 /* FundingProgress.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				F5CD23C52A0672F4008A2171 /* ProgressBar.swift in Sources */,
 				5350F1D82A037627003C1E1C /* FundingProduct.swift in Sources */,
 				537D3CC92A1206E40000676B /* ParticipateView.swift in Sources */,
+				F55856442A3B348A00CC6CA8 /* FundingParticipate.swift in Sources */,
+				F55856462A3B3A8B00CC6CA8 /* FundingProgress.swift in Sources */,
 				539E53242A1A726100631DF9 /* ProfileBox.swift in Sources */,
 				EF8B64972A1CB70400E7AEC1 /* KakaoAuth.swift in Sources */,
 				539E53282A1A79F700631DF9 /* MyFundListView.swift in Sources */,

@@ -17,6 +17,7 @@ struct Mypage: View {
                 ProfileBox(user: user)
                     .scaleEffect(0.8)
                 HStack{
+                    Spacer()
                     Button(
                         action: {self.showingFundingItem = true}
                     ){Text("참여한 펀딩")}
@@ -56,8 +57,8 @@ struct Mypage: View {
 private extension Mypage {
     var participateFundList: some View{
         ParticipateFundListView()
-        
     }
+    
     var myFundList : some View{
         MyFundListView()
     }

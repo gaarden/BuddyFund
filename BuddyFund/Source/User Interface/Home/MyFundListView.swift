@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyFundListView: View {
     var body: some View {
-        Text("나의 펀딩 리스트")
+        FundingProgress(product: productSamples[1])
     }
 }
 
