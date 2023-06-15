@@ -15,12 +15,16 @@ struct ShrinkButtonStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? minScale : 1)
             .opacity(configuration.isPressed ? minOpacity : 1)
+//            .animation(.default)
     }
 }
 
 struct ShrinkButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
-        Button("button"){}
-            .buttonStyle(ShrinkButtonStyle())
+        Button(action:{},
+               label:{
+            Text("button").font(.title)
+        })
+        .buttonStyle(ShrinkButtonStyle())
     }
 }

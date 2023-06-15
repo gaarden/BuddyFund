@@ -14,7 +14,7 @@ struct Home: View {
     
     var body: some View {
         var orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
-        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
+//        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
         print(orderproducts)
         return NavigationView {
             List(orderproducts){ product in // DB 연결
@@ -27,14 +27,15 @@ struct Home: View {
                     },     
                     label: {
                       EmptyView()
+                        }
+                    )
+                    .opacity(0)
+                    HStack {
+                        FundingProduct(product: product)
                     }
-                  )
-                  .opacity(0)
-                  HStack {
-                      FundingProduct(product: product)
-                  }
-                  
-                }
+                    
+                }.listRowSeparator(.hidden)
+//                .listRowBackground((Color.indigo).opacity(0.2))
               }
               .listStyle(PlainListStyle())
               .navigationTitle("진행중인 펀딩")
