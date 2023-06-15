@@ -19,6 +19,7 @@ struct ProduceFundingView: View {
     @State private var selectedImage: UIImage?
     @State private var isShowingImagePicker = false
     @State private var navigateToMypage = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
@@ -130,9 +131,10 @@ private extension ProduceFundingView {
         HStack {
             Spacer()
             Button(action: {
+                presentationMode.wrappedValue.dismiss()
                 showSaveAlert = true
             }) {
-                Text("임시저장")
+                Text("취소")
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -142,7 +144,7 @@ private extension ProduceFundingView {
             .alert(isPresented: $showSaveAlert) {
                 Alert(
                     title: Text("알림"),
-                    message: Text("임시저장되었습니다."),
+                    message: Text("작성중인 펀딩이 취소되었습니다."),
                     dismissButton: .default(Text("확인"))
                 )
             }
