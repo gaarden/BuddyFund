@@ -27,14 +27,15 @@ struct Home: View {
                     },     
                     label: {
                       EmptyView()
+                        }
+                    )
+                    .opacity(0)
+                    HStack {
+                        FundingProduct(product: product)
                     }
-                  )
-                  .opacity(0)
-                  HStack {
-                      FundingProduct(product: product)
-                  }
-                  
-                }
+                    
+                }.listRowSeparator(.hidden)
+//                .listRowBackground((Color.indigo).opacity(0.2))
               }
               .listStyle(PlainListStyle())
               .navigationTitle("진행중인 펀딩")
