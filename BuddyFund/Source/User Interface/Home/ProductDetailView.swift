@@ -14,10 +14,11 @@ struct ProductDetailView: View {
     @EnvironmentObject private var reviewInfo : ReviewInfo
     @EnvironmentObject var userinfo: UserInfo
     @State var showFundDesct = false
+    @State private var isNavigationBarHidden = false
+    
     var product : Product
     var body: some View {
             descriptView
-            .listStyle(.plain)
         }
 }
 private extension ProductDetailView{
@@ -32,23 +33,26 @@ private extension ProductDetailView{
     var descriptView : some View {
         return GeometryReader{ g in
             NavigationView{
-                List{
+                ScrollView{
                     productImage
                     self.productDescription
-                    fundingbutton
+                    fundingbutton.padding(.horizontal,10)
                     fundinglist
                     
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach(reviewInfo.reviews, id: \.self) { review in
-                            reviewBox(review: review)
+                            reviewBox(review: review).padding(.horizontal,8)
                         }
                     }
                     Text("")
                         .padding([.bottom],85)
                 }
-                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2+40)
-                    .edgesIgnoringSafeArea([.vertical])
+                .position(x: g.size.width/2, y: g.size.height/2+38)
+//                .position(x: g.size.width/2, y: g.size.height/2+38)
+//                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+                    .edgesIgnoringSafeArea([.bottom])
                     .frame(height: g.size.height)
+                    .navigationBarHidden(true)
             }
         }
     }
@@ -124,7 +128,7 @@ private extension ProductDetailView{
             ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
                 .frame(height:20)
             
-        }
+        }.padding(.horizontal,11)
     }
     var fundingbutton : some View {
         ZStack {
@@ -151,17 +155,14 @@ private extension ProductDetailView{
     }
     
     var fundinglist: some View {
-        HStack {
-            VStack(alignment: .leading) {
+        HStack{
+            VStack(alignment: .center) {
                 Text("참여내역")
                     .fontWeight(.bold)
                     .font(.headline)
                     
                 Text("총 \(reviewInfo.reviews.count)명이 참여하였습니다.")
-            }
-            
-            Spacer()
-            
+            }.padding(10)
             // 사용자가 생성한 펀딩의 경우 참여 내역 상세보기 가능
             if userinfo.user.uid == product.createrId {
 //            if true {

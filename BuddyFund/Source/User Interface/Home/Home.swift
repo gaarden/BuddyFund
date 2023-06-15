@@ -14,7 +14,7 @@ struct Home: View {
     
     var body: some View {
         var orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
-        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
+//        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
         print(orderproducts)
         return NavigationView {
             List(orderproducts){ product in // DB 연결
