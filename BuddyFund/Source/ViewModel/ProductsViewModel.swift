@@ -21,7 +21,12 @@ class ProductsViewModel: ObservableObject {
         self.uid = uid
         fetchProducts(uid: uid)
     }
-    
+    func toggleFavorite(of product: Product){
+        guard let index = products.firstIndex(of: product) else {
+            return
+        }
+        products[index].isFavorite.toggle()
+    }
     func fetchProducts(uid: String) { // 친구 목록 가져오기
         let UserRef = ProductsViewModel.db.collection("users").document(uid)
         

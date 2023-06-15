@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    @EnvironmentObject private var present: Present
+//    @EnvironmentObject private var present: Present
+    @EnvironmentObject private var present: ProductsViewModel
     let product: Product
     
     private var imageName: String {
