@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct MyFundListView: View {
-    
+    @EnvironmentObject var creates: CreateFundListVIewModel
     var body: some View {
-        FundingProgress(product: productSamples[1])
+        List(creates.createsFund){ product in
+            FundingProgress(product: product)
+        }
     }
 }
 
 struct MyFundListView_Previews: PreviewProvider {
     static var previews: some View {
         MyFundListView()
+            .environmentObject(CreateFundListVIewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }
