@@ -15,6 +15,8 @@
 		1A47BE022A347C77005CCDE2 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47BE012A347C77005CCDE2 /* UserInfo.swift */; };
 		1A47BE042A347D26005CCDE2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47BE032A347D26005CCDE2 /* User.swift */; };
 		1A47BE062A34A6BE005CCDE2 /* ShowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47BE052A34A6BE005CCDE2 /* ShowImage.swift */; };
+		1A4BD2292A3C468E00EAA97F /* ParticipateFundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BD2282A3C468D00EAA97F /* ParticipateFundListViewModel.swift */; };
+		1A4BD22B2A3C617800EAA97F /* Paticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BD22A2A3C617800EAA97F /* Paticipant.swift */; };
 		1A4C7BDC2A39FF0B006DA5E0 /* ParticipateDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C7BDB2A39FF0B006DA5E0 /* ParticipateDescriptionView.swift */; };
 		1A4C7BDE2A3A0BDB006DA5E0 /* ParticipantReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C7BDD2A3A0BDB006DA5E0 /* ParticipantReview.swift */; };
 		1A50560D2A34FF9400825F64 /* ReviewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50560C2A34FF9400825F64 /* ReviewInfo.swift */; };
@@ -65,6 +67,8 @@
 		1A47BE012A347C77005CCDE2 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		1A47BE032A347D26005CCDE2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A47BE052A34A6BE005CCDE2 /* ShowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImage.swift; sourceTree = "<group>"; };
+		1A4BD2282A3C468D00EAA97F /* ParticipateFundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateFundListViewModel.swift; sourceTree = "<group>"; };
+		1A4BD22A2A3C617800EAA97F /* Paticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paticipant.swift; sourceTree = "<group>"; };
 		1A4C7BDB2A39FF0B006DA5E0 /* ParticipateDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateDescriptionView.swift; sourceTree = "<group>"; };
 		1A4C7BDD2A3A0BDB006DA5E0 /* ParticipantReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantReview.swift; sourceTree = "<group>"; };
 		1A50560C2A34FF9400825F64 /* ReviewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfo.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				1A50560C2A34FF9400825F64 /* ReviewInfo.swift */,
 				1A1D786D2A38E35F00966781 /* ParticipateFundingViewModel.swift */,
 				1AD28AAE2A3A334100EEB502 /* ParticipantsDetailViewModel.swift */,
+				1A4BD2282A3C468D00EAA97F /* ParticipateFundListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				F5B37DC82A0889D700ABDC74 /* Present.swift */,
 				53471F582A1139D200E2E365 /* Review.swift */,
 				EF8B64962A1CB70400E7AEC1 /* KakaoAuth.swift */,
+				1A4BD22A2A3C617800EAA97F /* Paticipant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				F598B1572A034BAC005D20F7 /* Home.swift in Sources */,
 				539E53222A1A724300631DF9 /* Mypage.swift in Sources */,
 				F598B1672A034C61005D20F7 /* SceneDelegate.swift in Sources */,
+				1A4BD2292A3C468E00EAA97F /* ParticipateFundListViewModel.swift in Sources */,
 				539E53262A1A79DE00631DF9 /* ParticipateFundListView.swift in Sources */,
 				53DBE4CD2A2CF08F00DF97E0 /* MainTabView.swift in Sources */,
 				1A1D786C2A38DC6E00966781 /* FundingService.swift in Sources */,
@@ -376,6 +383,7 @@
 				F55856462A3B3A8B00CC6CA8 /* FundingProgress.swift in Sources */,
 				539E53242A1A726100631DF9 /* ProfileBox.swift in Sources */,
 				EF8B64972A1CB70400E7AEC1 /* KakaoAuth.swift in Sources */,
+				1A4BD22B2A3C617800EAA97F /* Paticipant.swift in Sources */,
 				539E53282A1A79F700631DF9 /* MyFundListView.swift in Sources */,
 				F5B37DC92A0889D700ABDC74 /* Present.swift in Sources */,
 				53471F592A1139D200E2E365 /* Review.swift in Sources */,

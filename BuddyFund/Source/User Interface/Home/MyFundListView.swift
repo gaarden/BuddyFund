@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyFundListView: View {
+    
     var body: some View {
         FundingProgress(product: productSamples[1])
     }
