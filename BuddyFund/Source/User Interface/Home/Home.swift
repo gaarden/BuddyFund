@@ -13,9 +13,13 @@ struct Home: View {
     @EnvironmentObject private var user: UserInfo
     
     var body: some View {
-        var orderproducts = productsInfo.products.sorted{calculateBirthdayDday(birthday: $0.bday) < calculateBirthdayDday(birthday: $1.bday)}
-//        isfavoriteProc(products: &orderproducts, isfavorites: user.favoriteProd)
-        print(orderproducts)
+        var orderproducts = productsInfo.products.sorted{ (product1, product2) -> Bool in
+            if product1.isFavorite != product2.isFavorite {
+                return product1.isFavorite
+            } else {
+                return calculateBirthdayDday(birthday: product1.bday) < calculateBirthdayDday(birthday: product2.bday)
+            }
+        }
         return NavigationView {
             List(orderproducts){ product in // DB 연결
 //            List(present.products){ product in
@@ -82,16 +86,6 @@ struct Home: View {
         let daysUntilBirthday = components.day!
         
         return daysUntilBirthday
-    }
-    
-    func isfavoriteProc(products: inout [Product], isfavorites:[String]) {
-        for index in products.indices {
-            if isfavorites.contains(products[index].pid) {
-                products[index].isFavorite = true
-                let item = products.remove(at: index)
-                products.insert(item, at: 0)
-            }
-        }
     }
 }
 
