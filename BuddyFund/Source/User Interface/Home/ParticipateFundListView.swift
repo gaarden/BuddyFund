@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ParticipateFundListView: View {
-    @EnvironmentObject var participatesList: ParticipateFundListViewModel
+//    @EnvironmentObject var participatesList: ParticipateFundListViewModel
     let user: User
     
     var body: some View {
         
-        let participates = participatesList.participateList.sorted { $0.date < $1.date }
+//        let participates = participatesList.participateList.sorted { $0.date < $1.date }
 
-        List(participates){ participate in // DB 연결
+        List(participantSamples){ participate in // DB 연결
             VStack {
                 FundingParticipate(participant: participate, user: user)
             }
@@ -29,7 +29,7 @@ struct ParticipateFundListView: View {
 struct ParticipateFundListView_Previews: PreviewProvider {
     static var previews: some View {
         ParticipateFundListView(user: userSample)
-            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+//            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
 //            .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }

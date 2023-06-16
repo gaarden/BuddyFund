@@ -81,7 +81,7 @@ struct Mypage_Previews: PreviewProvider {
     static var previews: some View {
         Mypage(user: userSample)
             .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
-            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+//            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
         ProfileBox(user: userSample)
         
     }
