@@ -11,6 +11,7 @@ struct Home: View {
 //    @EnvironmentObject private var present : Present
     @EnvironmentObject private var productsInfo : ProductsViewModel
     @EnvironmentObject private var user: UserInfo
+//    var present: [Product]
     
     var body: some View {
         var orderproducts = productsInfo.products.sorted{ (product1, product2) -> Bool in

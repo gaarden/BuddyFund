@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FundingParticipate: View {
-    let product: Product
+    let participant: Participate
+    let user: User
     
     var body: some View {
         VStack{
@@ -21,7 +22,7 @@ struct FundingParticipate: View {
             }.frame(height: 100)
                 .padding([.horizontal, .top], 3)
                 .padding([.bottom], 20)
-            Text("(날짜): (User 닉네임)님이 (얼마) 펀딩하셨습니다.")
+            Text("\(participant.date)\n\(user.username) (\(participant.nickname))님이 ￦\(participant.funding) 펀딩하셨습니다.")
                 .bold()
         }.frame(height: 190)
         .background(Color.red.opacity(0.05))
@@ -41,22 +42,22 @@ private extension FundingParticipate {
 //              .resizable()
 //              .scaledToFill()
 //          ResizedImage(product.profileImage)
-          ShowImage(imageURL: product.profileImage)
+          ShowImage(imageURL: participant.product.profileImage)
               .frame(width: 80,height:80)
               .clipShape(Circle())
-          Text(product.username)
+          Text(participant.product.username)
       }
   }
   
   var productDescription: some View {
       VStack(alignment: .leading){
-          Text(product.title)
+          Text(participant.product.title)
               .font(.title2)
               .frame(maxWidth: 200, maxHeight: 100, alignment: .leading)
               .fontWeight(.bold)
               .minimumScaleFactor(0.3)
           Spacer()
-          Text(product.description)
+          Text(participant.product.description)
               .font(.footnote)
               .foregroundColor(.secondary)
       }.padding(5)
@@ -67,7 +68,7 @@ private extension FundingParticipate {
 //            .resizable()
 //            .scaledToFill()
 //        ResizedImage(product.itemImage)
-        ShowImage(imageURL: product.itemImage)
+        ShowImage(imageURL: participant.product.itemImage)
             .frame(width: 100,height:133)
             .clipped()
             .padding(5)
@@ -76,6 +77,6 @@ private extension FundingParticipate {
 
 struct FundingParticipate_Previews: PreviewProvider {
     static var previews: some View {
-        FundingParticipate(product: productSamples[1])
+        FundingParticipate(participant: participantSamples[0], user: userSample)
     }
 }

@@ -12,41 +12,41 @@ class UserInfo: ObservableObject {
     @Published var updateData = false
     @Published var user: User
 //    @Published var friendsList: [String] = []
-    @Published var favoriteProd: [String] = []
+//    @Published var favoriteProd: [String] = []
     
     init(userid: String) {
         print("DEBUG:: Get user data from DB")
         self.user = User(uid:"", username: "", profileImage: "", bday: "")
 //        self.friendsList = pullFreinds(uid: userid)
-        pullFavorites(uid: userid)
+//        pullFavorites(uid: userid)
         fetchUser(uid: userid)
     }
     
-    func pullFavorites(uid: String)->() {
-        var favorites: [String] = []
-        let UserRef = ProductsViewModel.db.collection("users").document(uid)
-        
-        UserRef.collection("favorites").getDocuments { snapshot, error in
-            if let error = error {
-                print("Error fetching favorites collection: \(error)")
-                return
-            }
-            
-            for document in snapshot?.documents ?? [] {
-                let favoriteData = document.data()
-                if let favoriteId = favoriteData["product"] as? String {
-//                        print("friend: \(friendId)")
-                    self.favoriteProd.append(favoriteId)
-                } else {
-                    print("no favorite")
-                }
-            }
-        }
-        
-        print("favorites: \(favorites)")
-//        return favorites
-//        self.friendsList  = favorites
-    }
+//    func pullFavorites(uid: String)->() {
+//        var favorites: [String] = []
+//        let UserRef = ProductsViewModel.db.collection("users").document(uid)
+//
+//        UserRef.collection("favorites").getDocuments { snapshot, error in
+//            if let error = error {
+//                print("Error fetching favorites collection: \(error)")
+//                return
+//            }
+//
+//            for document in snapshot?.documents ?? [] {
+//                let favoriteData = document.data()
+//                if let favoriteId = favoriteData["product"] as? String {
+////                        print("friend: \(friendId)")
+//                    self.favoriteProd.append(favoriteId)
+//                } else {
+//                    print("no favorite")
+//                }
+//            }
+//        }
+//
+//        print("favorites: \(favorites)")
+////        return favorites
+////        self.friendsList  = favorites
+//    }
     /*
     func pullFreinds(uid: String)->[String] {
         var friends : [String] = []

@@ -56,5 +56,6 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView()
 //            .environmentObject(Present())
             .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
+//            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }
