@@ -14,12 +14,14 @@ struct ProductDetailView: View {
     @EnvironmentObject private var reviewInfo : ReviewInfo
     @EnvironmentObject var userinfo: UserInfo
     @State var showFundDesct = false
-    @State private var isNavigationBarHidden = false
+//    @State private var isNavigationBarHidden = false
     
     var product : Product
     var body: some View {
+        NavigationView{
             descriptView
         }
+    }
 }
 private extension ProductDetailView{
     var productImage : some View{
@@ -32,11 +34,27 @@ private extension ProductDetailView{
     }
     var descriptView : some View {
         return GeometryReader{ g in
-            NavigationView{
-                ScrollView{
+            ScrollView{
                     productImage
                     self.productDescription
-                    fundingbutton.padding(.horizontal,10)
+                    //                    fundingbutton.padding(.horizontal,10)
+                    ForEach(0..<1){index in
+                        NavigationLink(
+                            destination: ParticipateView(product: product)
+                                .navigationBarBackButtonHidden(true)
+                                .environmentObject(ParticipateFundingViewModel()),
+                            label: {
+                                Capsule()
+                                    .stroke(Color.black)
+                                    .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
+                                    .overlay(Text("펀딩하기")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(Color.black))
+                                    .padding(.vertical, 8)
+                            }
+                        )
+                    }
                     fundinglist
                     
                     VStack(alignment: .leading, spacing: 10) {
@@ -48,13 +66,12 @@ private extension ProductDetailView{
                         .padding([.bottom],85)
                 }
                 .position(x: g.size.width/2, y: g.size.height/2+38)
-//                .position(x: g.size.width/2, y: g.size.height/2+38)
-//                    .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
-                    .edgesIgnoringSafeArea([.bottom])
-                    .frame(height: g.size.height)
-                    .navigationBarHidden(true)
+                .edgesIgnoringSafeArea([.bottom])
+                .frame(height: g.size.height)
+//                                    .navigationBarHidden(true)
             }
-        }
+//        .navigationTitle("")
+           
     }
     
     func calculateBirthdayDday(birthday: String) -> String {
@@ -131,26 +148,28 @@ private extension ProductDetailView{
         }.padding(.horizontal,11)
     }
     var fundingbutton : some View {
-        ZStack {
-          NavigationLink(
-            destination: {
-                ParticipateView(product: product)
-                    .navigationBarBackButtonHidden()
-                    .environmentObject(ParticipateFundingViewModel())
-            },
-            label: {
-              EmptyView()
+        ForEach(0..<1){index in
+            ZStack {
+                NavigationLink(
+                    destination: {
+                        ParticipateView(product: product)
+                                            .navigationBarBackButtonHidden()
+                            .environmentObject(ParticipateFundingViewModel())
+                    },
+                    label: {
+                        EmptyView()
+                    }
+                )
+                .opacity(0)
+                
+                Capsule()
+                    .stroke(Color.black)
+                    .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
+                    .overlay(Text("펀딩하기")
+                        .font(.system(size: 20)).fontWeight(.medium)
+                        .foregroundColor(Color.black))
+                    .padding(.vertical, 8)
             }
-          )
-          .opacity(0)
-            
-          Capsule()
-            .stroke(Color.black)
-            .frame(maxWidth: .infinity, minHeight: 35, maxHeight: 55)
-            .overlay(Text("펀딩하기")
-            .font(.system(size: 20)).fontWeight(.medium)
-            .foregroundColor(Color.black))
-            .padding(.vertical, 8)
         }
     }
     
