@@ -135,6 +135,6 @@ private extension FundingProduct {
 
 struct FundingProduct_Previews: PreviewProvider {
     static var previews: some View {
-        FundingProduct(product: productSamples[1]).padding()
+        FundingProduct(product: productSamples[0]).padding()
     }
 }
