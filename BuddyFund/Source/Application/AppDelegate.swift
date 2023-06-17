@@ -34,6 +34,7 @@ struct Map_Watch_AppApp: App {
                 .environmentObject(Present())
                 .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw")) // 사용자 아이디 수정 필요
                 .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+                .environmentObject(CreateFundListVIewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
 //                .environmentObject(ProductsViewModel(uid: "testid"))
 //            LoginView()
             

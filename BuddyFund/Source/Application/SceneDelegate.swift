@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw")) // 사용자 아이디 수정 필요
           .environmentObject(ProductsViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
           .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+          .environmentObject(CreateFundListVIewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
 //      let rootView = LoginView()
       
     

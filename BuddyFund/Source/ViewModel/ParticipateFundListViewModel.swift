@@ -10,6 +10,7 @@ import Firebase
 
 class ParticipateFundListViewModel: ObservableObject {
 //    var testId: [String] = []
+    @Published var didupdate = false
     @Published var participateList = [Participate]()
 //    var products = [Product]()
 //    var reviews = [Review]()

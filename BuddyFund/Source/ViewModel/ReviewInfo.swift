@@ -16,7 +16,7 @@ class ReviewInfo: ObservableObject {
     init(pid: String) {
         print("DEBUG:: Get product's review data from DB")
         self.pid = pid
-        fetchReivews(product: pid)
+        test(product: pid)
     }
     
     func convertTimestampToStr(timestamp: Timestamp) -> String {
@@ -27,6 +27,37 @@ class ReviewInfo: ObservableObject {
         let dateStr = dateFomatter.string(from: date)
         
         return dateStr
+    }
+    
+    func test(product: String) {
+        let ref = Firestore.firestore().collection("participates")
+        
+        ref.whereField("pid", isEqualTo: product).order(by: "date", descending: true).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error: \(error)")
+            }
+            guard let documents = snapshot?.documents else {
+                print("No documents found")
+                return
+            }
+            
+            self.reviews.removeAll()
+            
+            for document in documents {
+                let reviewData = document.data()
+                
+                let uid = reviewData["user"] as? String ?? ""
+                
+                let username = reviewData["nickname"] as? String ?? ""
+                let comment = reviewData["comment"] as? String ?? ""
+                let date = reviewData["date"] as? Timestamp ?? Timestamp()
+                let commentDate = self.convertTimestampToStr(timestamp: date)
+                let funding = reviewData["funding"] as? Int ?? 0
+                let participantId = reviewData["user"] as? String ?? ""
+                let review = Review(username: username, comment: comment, commentDate: commentDate, funding: funding, uid: participantId)
+                self.reviews.append(review)
+            }
+        }
     }
     
     func fetchReivews(product: String) { // product 의 펀딩에 참여한 리스트

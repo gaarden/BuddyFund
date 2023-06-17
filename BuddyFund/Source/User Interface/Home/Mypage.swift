@@ -10,7 +10,7 @@ import SwiftUI
 struct Mypage: View {
     @State private var showingFundingItem: Bool = false
     @State private var showingCreateItem: Bool = false
-//    @EnvironmentObject var userInfo: UserInfo
+    @EnvironmentObject private var userinfo: UserInfo
     let user: User
     
     var body: some View {
