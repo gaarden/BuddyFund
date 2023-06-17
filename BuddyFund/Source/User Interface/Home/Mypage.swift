@@ -74,6 +74,7 @@ private extension Mypage {
     
     var myFundList : some View{
         MyFundListView()
+            .environmentObject(CreateFundListVIewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
     }
 }
 
