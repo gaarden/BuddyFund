@@ -129,18 +129,18 @@ private extension ProfileBox{
     }
     
     func fundDayButton(num: Int) -> some View {
-        if num >= 15 && num <= 362 {
-            return AnyView(
-                Button(action: {}){
-                    Text("펀딩생성 D-\(num-14)")
-                }
-                .font(.headline)
-                .foregroundColor(.black)
-                .frame(width: 310, height: 40)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(6)
-            )
-        } else {
+//        if num >= 15 && num <= 362 {
+//            return AnyView(
+//                Button(action: {}){
+//                    Text("펀딩생성 D-\(num-14)")
+//                }
+//                .font(.headline)
+//                .foregroundColor(.black)
+//                .frame(width: 310, height: 40)
+//                .background(Color.gray.opacity(0.3))
+//                .cornerRadius(6)
+//            )
+//        } else {
             return AnyView(
                 NavigationLink(destination: ProduceFundingView().navigationBarBackButtonHidden(), isActive: $navigateToProduceFundingView) {
                     Button(action: {
@@ -155,7 +155,7 @@ private extension ProfileBox{
                     }
                 }
             )
-        }
+//        }
     }
 
 }

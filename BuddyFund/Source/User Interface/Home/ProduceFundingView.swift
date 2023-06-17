@@ -20,6 +20,8 @@ struct ProduceFundingView: View {
     @State private var isShowingImagePicker = false
     @State private var navigateToMypage = false
     @Environment(\.presentationMode) var presentationMode
+    //user데꼬오기
+    @EnvironmentObject var userinfo: UserInfo
 
     var body: some View {
         NavigationView {
@@ -185,7 +187,7 @@ private extension ProduceFundingView {
             }
             .background(
                 NavigationLink(
-                    destination: Mypage(user:userSample),
+                    destination: Mypage(user:userinfo.user).navigationBarBackButtonHidden(true),
                     isActive: $navigateToMypage,
                     label: { EmptyView() }
                 )
