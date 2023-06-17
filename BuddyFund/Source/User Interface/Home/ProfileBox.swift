@@ -142,7 +142,7 @@ private extension ProfileBox{
             )
         } else {
             return AnyView(
-                NavigationLink(destination: ProduceFundingView().navigationBarBackButtonHidden(), isActive: $navigateToProduceFundingView) {
+                NavigationLink(destination: ProduceFundingView(user: user).navigationBarBackButtonHidden().environmentObject(CreateFundViewModel()), isActive: $navigateToProduceFundingView) {
                     Button(action: {
                         navigateToProduceFundingView = true
                     }) {
