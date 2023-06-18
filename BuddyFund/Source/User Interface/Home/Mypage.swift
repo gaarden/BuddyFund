@@ -10,13 +10,14 @@ import SwiftUI
 struct Mypage: View {
     @State private var showingFundingItem: Bool = false
     @State private var showingCreateItem: Bool = false
-    @EnvironmentObject private var userinfo: UserInfo
-    let user: User
+    @EnvironmentObject var userInfo: UserInfo
+    let user: User//preview를 위해 남겨놓음.
     
     var body: some View {
         NavigationView{
             VStack{
                 ProfileBox(user: user)
+                //ProfileBox(user: userInfo.user)
                     .scaleEffect(0.8)
                 HStack{
                     Spacer()
@@ -62,13 +63,13 @@ struct Mypage: View {
                 Spacer()
             }.padding()
                 .navigationTitle("마이페이지")
-
+                .navigationBarBackButtonHidden(true)
         }
     }
 }
 private extension Mypage {
     var participateFundList: some View{
-        ParticipateFundListView(user: user)
+        ParticipateFundListView(user: userInfo.user)
 //            .environmentObject(ParticipantsDetailViewModel(userid: user.uid))
     }
     
@@ -82,7 +83,7 @@ struct Mypage_Previews: PreviewProvider {
     static var previews: some View {
         Mypage(user: userSample)
             .environmentObject(UserInfo(userid: "0cOa7C63F7uJHbAF7qcw"))
-//            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
+            .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
         ProfileBox(user: userSample)
         
     }
