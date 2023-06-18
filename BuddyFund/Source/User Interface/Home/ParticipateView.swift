@@ -20,6 +20,7 @@ struct ParticipateView: View {
     @EnvironmentObject var userinfo: UserInfo
     @EnvironmentObject var viewModel: ParticipateFundingViewModel
     @EnvironmentObject var productsInfo: ProductsViewModel
+    @EnvironmentObject var participates: ParticipateFundListViewModel
     
     var body: some View {
         NavigationView{
@@ -195,7 +196,9 @@ struct ParticipateView: View {
                     
                     showingPopup.toggle()
                     
-                    viewModel.didUpload.toggle()
+//                    viewModel.didUpload.toggle()
+                    
+//                    participates.didupdate.toggle()
                     userinfo.updateData.toggle()
                     
                     print("DEBUG:: \(product.currentCollection) && update: \(viewModel.didUpload)")

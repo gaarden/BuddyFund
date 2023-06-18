@@ -26,11 +26,12 @@ class ParticipateFundingViewModel: ObservableObject {
             "nickname": nickname,
             "funding": funding,
             "date": Timestamp(date: Date()),
-            "comment": comment
+            "comment": comment,
+            "pid": product.pid
         ]
         
         // 펀딩 데이터 참여 데이터 추가
-        let refData = Firestore.firestore().collection("products").document(product.pid).collection("participants").document()
+        let refData = Firestore.firestore().collection("participates").document()
         refData.setData(fundingdata) {error in
             if let error = error {
                 print("Error adding participate funding document: \(error)")
@@ -45,10 +46,10 @@ class ParticipateFundingViewModel: ObservableObject {
         
         
         // 사용자의 참여 펀딩 목록에 데이터 추가
-        let fundinglistdata = [
-            "participantsId": refData.documentID,
-            "productId": product.pid
-        ]
-        Firestore.firestore().collection("users").document(uid).collection("participateFundings").document().setData(fundinglistdata)
+//        let fundinglistdata = [
+//            "participantsId": refData.documentID,
+//            "productId": product.pid
+//        ]
+//        Firestore.firestore().collection("users").document(uid).collection("participateFundings").document().setData(fundinglistdata)
     }
 }

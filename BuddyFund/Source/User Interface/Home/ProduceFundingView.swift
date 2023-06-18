@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct ProduceFundingView: View {
+    let user: User
     @State private var setTitle: String = ""
     @State private var setDetail: String = ""
     @State private var setPrice: String = ""
@@ -19,6 +20,7 @@ struct ProduceFundingView: View {
     @State private var selectedImage: UIImage?
     @State private var isShowingImagePicker = false
     @State private var navigateToMypage = false
+    @EnvironmentObject private var create: CreateFundViewModel
     @Environment(\.presentationMode) var presentationMode
     //user데꼬오기
     @EnvironmentObject var userinfo: UserInfo
@@ -159,6 +161,7 @@ private extension ProduceFundingView {
                 } else {
                     showEmptyFieldsAlert = true
                 }
+                
             }) {
                 Text("펀딩 생성하기")
                     .foregroundColor(.white)
@@ -180,6 +183,13 @@ private extension ProduceFundingView {
                     message: Text("펀딩을 생성하시겠습니까?"),
                     primaryButton: .default(Text("확인"), action: {
                         // 펀딩 생성 로직을 여기에 추가하세요. - 마이페이지로 이동
+                        if let price = Int(setPrice) {
+                            if let image = selectedImage {
+                                create.createFund(user: user, account: setBanking, description: setDetail, price: price, title: setTitle, img: image)
+                            }
+                        } else {
+                            print("가격 형식 에러")
+                        }
                         navigateToMypage = true
                     }),
                     secondaryButton: .cancel(Text("취소"))
@@ -236,7 +246,8 @@ struct MultilineTextView: UIViewRepresentable {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProduceFundingView()
+        ProduceFundingView(user: userSample)
+            .environmentObject(CreateFundViewModel())
     }
 }
 

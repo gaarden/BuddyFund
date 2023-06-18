@@ -18,6 +18,8 @@ struct ProductDetailView: View {
     
     var product : Product
     var body: some View {
+        var reviews = reviewInfo.reviews.sorted{ $0.commentDate < $1.commentDate
+        }
         NavigationView{
             descriptView
         }
