@@ -20,7 +20,7 @@ struct ParticipateDescriptionView: View {
             ScrollView {
                 ForEach(reviewInfo.reviews, id: \.self) { review in
                     ParticipantReview(review: review)
-                        .padding(.horizontal, 5)
+                        .padding(.horizontal, 10)
                         .environmentObject(ParticipantsDetailViewModel(userid: review.uid))
                 }
             }

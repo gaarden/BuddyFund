@@ -51,12 +51,12 @@ struct ParticipateView: View {
             .padding(.bottom, 85)
 //            .navigationTitle(product.title)
             .edgesIgnoringSafeArea([.vertical])
-            .popup(isPresented: $showingPopup){
-                Text("✦ 펀딩완료 ✧")
-                .font(.system(size:24))
-                .bold()
-                .multilineTextAlignment(.center)
-            }
+//            .popup(isPresented: $showingPopup){
+//                Text("✦ 펀딩완료 ✧")
+//                .font(.system(size:24))
+//                .bold()
+//                .multilineTextAlignment(.center)
+//            }
         }
 
     }
@@ -134,7 +134,8 @@ struct ParticipateView: View {
             Button(action: {
                 print("Cancle Funding")
             }) {
-                NavigationLink(destination: ProductDetailView(product: product).navigationBarBackButtonHidden()) {
+                NavigationLink(destination: ProductDetailView(product: product).navigationBarBackButtonHidden())
+                {
                     Capsule()
                         .fill(Color.gray).opacity(0.4)
                         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 50)
@@ -143,8 +144,7 @@ struct ParticipateView: View {
                         .foregroundColor(Color.black))
                         .padding(.vertical, 8)
                 }
-            }
-            .buttonStyle(ShrinkButtonStyle())
+            }.buttonStyle(ShrinkButtonStyle())
         }
     }
     

@@ -41,7 +41,7 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .foregroundColor(.white)
-                .background(Color.pink)
+                .background(Color.indigo)
                 .cornerRadius(8)
                 Spacer()
             }
@@ -54,7 +54,7 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .foregroundColor(.white)
-                .background(Color.pink)
+                .background(Color.indigo)
                 .cornerRadius(8)
                 Spacer()
             }
@@ -67,7 +67,7 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .foregroundColor(.white)
-                .background(Color.pink)
+                .background(Color.indigo)
                 .cornerRadius(8)
                 Spacer()
             }

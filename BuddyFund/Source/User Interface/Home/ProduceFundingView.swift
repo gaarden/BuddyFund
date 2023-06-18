@@ -22,7 +22,6 @@ struct ProduceFundingView: View {
     @State private var navigateToMypage = false
     @EnvironmentObject private var create: CreateFundViewModel
     @Environment(\.presentationMode) var presentationMode
-    //user데꼬오기
     @EnvironmentObject var userinfo: UserInfo
 
     var body: some View {

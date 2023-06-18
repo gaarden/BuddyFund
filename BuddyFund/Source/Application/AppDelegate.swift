@@ -36,7 +36,7 @@ struct Map_Watch_AppApp: App {
                 .environmentObject(ParticipateFundListViewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
                 .environmentObject(CreateFundListVIewModel(uid: "0cOa7C63F7uJHbAF7qcw"))
 //                .environmentObject(ProductsViewModel(uid: "testid"))
-//            LoginView()
+            LoginView()
             
         }
     }
