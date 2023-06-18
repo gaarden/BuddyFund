@@ -12,41 +12,29 @@ struct FundingProgress: View {
     let onprogress = true
     
     var body: some View {
-        VStack{
-            HStack{
-                VStack {
-                    HStack {
-                        sticker.padding([.leading, .top])
-                        Spacer()
+            VStack{
+                HStack{
+                    VStack {
+                        HStack {
+                            sticker.padding([.leading, .top])
+                            Spacer()
+                        }
+                        productDescription
+                            .padding([.leading])
                     }
-                    productDescription
-                        .padding([.leading])
+                    productImage
                 }
-                productImage
-            }
-            if (!onprogress) {
-                writeReview
-            } else {
-                HStack {
+                if (!onprogress) {
+                    
+                } else {
                     ProgressBar(progress: 50)
                         .padding([.horizontal])
-                    Button(action: {
-                        // 수정해야하니까 ProduceFundingView로 이동, 근데 원래 내가 쓴 데이터 가지고..
-                    }) {
-                        Text("수정")
-                            .padding([.all], 3)
-                            .foregroundColor(.white)
-                            .background(Color.pink)
-                            .cornerRadius(8)
-                    }
-                    .padding([.horizontal])
                 }
-            }
-        }.frame(height: 190)
-        .background(Color.red.opacity(0.05))
-        .background(Color.primary.colorInvert()) // 테두리에만 그림자하기 위한 것
-        .cornerRadius(10)
-        .shadow(color:Color.primary.opacity(0.33), radius: 1,x:2, y:2)
+            }.frame(height: 190)
+            .background(Color.red.opacity(0.05))
+            .background(Color.primary.colorInvert()) // 테두리에만 그림자하기 위한 것
+            .cornerRadius(10)
+            .shadow(color:Color.primary.opacity(0.33), radius: 1,x:2, y:2)
     }
 }
 
@@ -57,12 +45,15 @@ private extension FundingProgress {
       VStack(alignment: .leading){
           Text(product.title)
               .font(.title2)
-              .frame(maxHeight: 100, alignment: .leading)
+              .frame(maxHeight: 50, alignment: .leading)
               .fontWeight(.bold)
           Spacer()
           Text(product.description)
               .font(.footnote)
+              .frame(maxHeight: 200)
               .foregroundColor(.secondary)
+          Spacer()
+          Spacer()
       }.padding(5)
   }
   
@@ -85,17 +76,6 @@ private extension FundingProgress {
             .background(onprogress ? Color.yellow.opacity(0.5) : Color.gray.opacity(0.5))
             .cornerRadius(8)
     }
-    
-    var writeReview: some View {
-            Button(action: {}) {
-                Text("✏️ 후기 작성하기")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.pink)
-                    .cornerRadius(8)
-            }
-        }
 
 }
 
