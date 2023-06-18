@@ -41,11 +41,6 @@ private extension FundingProduct {
     
   var profile: some View {
       VStack{
-//          Image(product.profileImage)
-//          KFImage(URL(string: product.profileImage))
-//              .resizable()
-//              .scaledToFill()
-//          ResizedImage(product.profileImage)
           ShowImage(imageURL: product.profileImage)
               .frame(width: 80,height:80)
               .clipShape(Circle())
@@ -70,10 +65,6 @@ private extension FundingProduct {
   }
   
     var productImage: some View {
-//        KFImage(URL(string: product.itemImage))
-//            .resizable()
-//            .scaledToFill()
-//        ResizedImage(product.itemImage)
         ShowImage(imageURL: product.itemImage)
             .frame(width: 100,height:133)
             .clipped()

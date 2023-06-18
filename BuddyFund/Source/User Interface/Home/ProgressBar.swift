@@ -48,8 +48,9 @@ struct ProgressBar: View {
                 ZStack{
                     ProgressView(configuration)
                         .accentColor(.green)
+                        .opacity(0.8)
                         .scaleEffect(CGSize(width: 1.0, height: 1.5))
-                    ZStack{
+                        .overlay{
                         HStack{
                             if value<5
                             {
@@ -57,10 +58,15 @@ struct ProgressBar: View {
                                     .font(.system(size: 21))
                                     .frame(width: CGFloat(25), height: 25, alignment: .bottomTrailing)
                             }
+                            else if value>95{
+                                Text(emoji)
+                                    .font(.system(size: 21))
+                                    .frame(width: CGFloat(geometry.size.width / 100 * CGFloat(value)+13), height: 25, alignment: .bottomTrailing)
+                            }
                             else{
                                 Text(emoji)
                                     .font(.system(size: 21))
-                                    .frame(width: CGFloat(geometry.size.width / 100 * CGFloat(value)+5), height: 25, alignment: .bottomTrailing)
+                                    .frame(width: CGFloat(geometry.size.width / 100 * CGFloat(value)+3), height: 25, alignment: .bottomTrailing)
                             }
                             Spacer()
                         }
@@ -73,6 +79,9 @@ struct ProgressBar: View {
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(progress: 10.0)
+        ProgressBar(progress: 100.0)
+        ProgressBar(progress: 0.0)
+        ProgressBar(progress: 90.0)
+        
     }
 }

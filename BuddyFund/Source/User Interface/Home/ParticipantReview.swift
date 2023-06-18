@@ -54,12 +54,13 @@ struct ParticipantReview: View {
                 Image(systemName: "wonsign.circle.fill")
                     .foregroundColor(.yellow)
                 Text("\(review.funding)")
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
             .background(.indigo)
+            .opacity(0.9)
             .cornerRadius(30)
         }
     }

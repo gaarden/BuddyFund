@@ -39,7 +39,6 @@ private extension ProductDetailView{
             ScrollView{
                     productImage
                     self.productDescription
-                    //                    fundingbutton.padding(.horizontal,10)
                     ForEach(0..<1){index in
                         NavigationLink(
                             destination: ParticipateView(product: product)
@@ -53,7 +52,8 @@ private extension ProductDetailView{
                                         .font(.system(size: 20))
                                         .fontWeight(.medium)
                                         .foregroundColor(Color.black))
-                                    .padding(.vertical, 8)
+                                    .padding(.horizontal,13)
+                                    .padding(.vertical,5)
                             }
                         )
                     }
@@ -61,7 +61,7 @@ private extension ProductDetailView{
                     
                     VStack(alignment: .leading, spacing: 10) {
                         ForEach(reviewInfo.reviews, id: \.self) { review in
-                            reviewBox(review: review).padding(.horizontal,8)
+                            reviewBox(review: review).padding(.horizontal,13)
                         }
                     }
                     Text("")
@@ -147,7 +147,7 @@ private extension ProductDetailView{
             ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
                 .frame(height:20)
             
-        }.padding(.horizontal,11)
+        }.padding(.horizontal,18)
     }
     var fundingbutton : some View {
         ForEach(0..<1){index in
@@ -183,12 +183,14 @@ private extension ProductDetailView{
                     .font(.headline)
                     
                 Text("총 \(reviewInfo.reviews.count)명이 참여하였습니다.")
-            }.padding(10)
-            // 사용자가 생성한 펀딩의 경우 참여 내역 상세보기 가능
-            if userinfo.user.uid == product.createrId {
-//            if true {
-                fundinglistDetail
-            }
+                // 사용자가 생성한 펀딩의 경우 참여 내역 상세보기 가능
+                if userinfo.user.uid == product.createrId {
+    //            if true {
+                fundinglistDetail.frame(height:40)
+                }
+            }.frame(width: UIScreen.main.bounds.width)
+            .padding(10)
+            
         }
     }
     
@@ -198,10 +200,11 @@ private extension ProductDetailView{
         } label: {
             Rectangle()
                 .fill(.indigo)
-                .frame(maxWidth: 130, maxHeight: 30)
+                .opacity(0.9)
+                .frame(maxWidth: 150, maxHeight: 40)
                 .cornerRadius(30)
                 .overlay(Text("참여내역 상세보기")
-                    .font(.footnote)
+                    .font(.subheadline)
                     .foregroundColor(.white)
                              )
         }
