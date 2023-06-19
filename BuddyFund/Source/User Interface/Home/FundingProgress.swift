@@ -27,12 +27,8 @@ struct FundingProgress: View {
                     }
                     productImage
                 }
-                if (!onprogress) {
-                    
-                } else {
-                    ProgressBar(progress: 50)
-                        .padding([.horizontal])
-                }
+                ProgressBar(progress: (Double(product.currentCollection)/Double(product.price))*100)
+                    .padding([.horizontal])
             }.frame(height: 190)
             .background(Color.red.opacity(0.05))
             .background(Color.primary.colorInvert()) // 테두리에만 그림자하기 위한 것
