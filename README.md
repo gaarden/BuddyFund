@@ -1,4 +1,6 @@
 # 🎀 B U D D Y F U N D 🎀
+<a href="[https://www.notion.so/e85505c7e78e475eaf0b75622f1fa848?pvs=4](https://www.notion.so/BuddyFund-2-57c130682ed8462495c2c09237214362?pvs=4)" target="_blank"><img src="https://img.shields.io/badge/Team Notion-white?style=for-the-badge&logo=notion&logoColor=black"/></a>
+
 생일 선물로 받고 싶은 물건에 대한 **펀딩을 진행**하고
 
 친구가 원하는 물건을 다른 사람들과 **펀딩을 통해 선물**하세요!
