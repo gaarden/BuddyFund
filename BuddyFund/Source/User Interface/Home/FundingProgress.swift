@@ -9,13 +9,16 @@ import SwiftUI
 
 struct FundingProgress: View {
     let product: Product
-    let onprogress = true
+    @State var onprogress = true
     
     var body: some View {
-            VStack{
+        
+            return VStack{
                 HStack{
                     VStack {
                         HStack {
+//                            Text("\(product.price)")
+//                            Text("\(product.currentCollection)")
                             sticker.padding([.leading, .top])
                             Spacer()
                         }
@@ -35,6 +38,16 @@ struct FundingProgress: View {
             .background(Color.primary.colorInvert()) // 테두리에만 그림자하기 위한 것
             .cornerRadius(10)
             .shadow(color:Color.primary.opacity(0.33), radius: 1,x:2, y:2)
+            .onAppear(
+                perform: {self.onprogress = updateProgress(currentFund: product.currentCollection, price: product.price, bday: product.bday)}
+            )
+    }
+    
+    func updateProgress(currentFund: Int, price: Int, bday: String) -> Bool {
+        if currentFund == price {
+            return false
+        }
+        return true
     }
 }
 
@@ -76,7 +89,6 @@ private extension FundingProgress {
             .background(onprogress ? Color.yellow.opacity(0.5) : Color.gray.opacity(0.5))
             .cornerRadius(8)
     }
-
 }
 
 struct FundingProgress_Previews: PreviewProvider {
